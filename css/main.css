@@ -99,10 +99,7 @@ body {
     line-height: 1.5;
   }
 
-
-  /* @media (prefers-color-scheme: dark) {
-    body { background-color: #222; color: #eee; }
-    .bg-white { background-color: #333; }
-    
-  } */
- 
+ .crash-orange {color:#ef4e16}
+ .bg-crash-orange {background-color:#ef4e16}
+ .crash-yellow {color:#ffce31}
+ .bg-crash-yellow {background-color:#ffce31}
