@@ -101,5 +101,38 @@ body {
 
  .crash-orange {color:#ef4e16 !important;}
  .bg-crash-orange {background-color:#ef4e16 !important;}
+ .b--crash-orange {border-color:#ef4e16 !important;}
+
  .crash-yellow {color:#ffce31 !important;}
  .bg-crash-yellow {background-color:#ffce31 !important;}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 2.25rem;
+  font-weight:600
+ }
+ h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  font-weight:600
+ }
+ h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.25rem;
+  font-weight:600
+ }
+ h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.25rem;
+  font-weight:600
+ }
+ p{
+  line-height:1.5 
+ }
+ strong{
+  font-weight:600
+ }
