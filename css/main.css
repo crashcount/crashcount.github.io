@@ -1,4 +1,7 @@
-
+/* Global Resets */
+html, body {
+  overflow-x: hidden;
+}
 
 body {
   background-color: #ffffff;
@@ -6,254 +9,166 @@ body {
   transition: background-color 0.2s, color 0.2s;
 }
 
-/* Example Tachyons overrides */
+/* Tachyons Overrides (Light Mode) */
 .bg-white { background-color: #ffffff; }
-.black   { color: #000000; }
+.black { color: #000000; }
 
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #222222; /* Dark background */
-    color: #eeeeee;            /* Lighter text */
-  }
-
-  /* Tachyons class overrides */
-  .bg-white {
-    background-color: #111111 !important;
-  }
-  .bg-near-white {
-    background-color: #333333 !important;
-  }
-  .bg-light-gray {
-    background-color: #333333 !important;
-  }
-  .black {
-    color: #CCCCCC !important;
-  }
-  .mid-gray {
-    color: #bbbbbb !important;
-  }
-  .dark-gray {
-    color: #aaaaaa !important;
-  }
-
-
-  a:link{
-    text-decoration: none;
-    transition: color .15s ease-in;
-    color: #8692fc;
-    opacity: 1; transition: opacity .15s ease-in;
-  }
-  a:link,
-  a:visited {
-    transition: color .15s ease-in;
-    opacity: 1; transition: opacity .15s ease-in;
-    color: #357edd;
-  }
-  a:link:hover{
-    transition: color .15s ease-in;
-    opacity: .5; transition: opacity .15s ease-in; 
-  }
-  a:link:active{
-    transition: color .15s ease-in;
-    opacity: .8; transition: opacity .15s ease-out; 
-  }
-  a:link:focus {
-    .link:focus   {
-      transition: color .15s ease-in;
-      outline: 1px dotted currentColor;
-      opacity: .5; transition: opacity .15s ease-in;
-    }
-  }
-  a:hover:active {
-    .link:focus   {
-      transition: color .15s ease-in;
-      outline: 1px dotted currentColor;
-      opacity: .5; transition: opacity .15s ease-in;
-    }
-  }
-  .b--black-10 {
-    border-color: rgba( 255, 255, 255, .1 ) !important;
-  }
-  @media screen and (min-width: 50em) {
-    /* Hide elements with .dn-m on medium screens and above */
-    .dn-m { display: none !important; }
-    /* Show elements with .db-m on medium screens and above */
-    .db-m { display: block !important; }
-  }
-
+/* Typography */
+h1 {
+  margin: 0;
+  font-size: 2.25rem;
+  font-weight: 600;
+}
+h2 {
+  margin: 0 0 0.5em 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+h3, h4 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+p {
+  line-height: 1.5;
+}
+strong {
+  font-weight: 600;
 }
 
-  /* Custom media query for medium breakpoint at 40em */
-  @media screen and (min-width: 50em) {
-    /* Elements with .dn-m will be hidden on medium+ screens */
-    .dn-m { display: none !important; }
-    /* Elements with .db-m will be shown on medium+ screens */
-    .db-m { display: block !important; }
-    /* Custom overrides for spacing and sizing */
-    .ph0-m { padding-left: 0 !important; padding-right: 0 !important; }
-    .w-30-m { width: 30% !important; }
-    .w-70-m { width: 70% !important; }
-    .f4-m { font-size: 1.25rem !important; }
-    .f3-m { font-size: 1.5rem !important; }
-    .mr3-m { margin-right: 1rem !important; }
-    .mr4-m { margin-right: 1.5rem !important; }
-  }
-  @media screen and (max-width: 49.99em) {
-    /* On small screens, ensure mobile elements show and desktop ones hide */
-    .dn-m { display: block !important; }
-    .db-m { display: none !important; }
-  }
-a:link{
-  text-decoration: none;
-  transition: color .15s ease-in;
-  color: #357edd;
-  opacity: 1; transition: opacity .15s ease-in;
-}
-a:link,
-a:visited {
-  transition: color .15s ease-in;
-  opacity: 1; transition: opacity .15s ease-in;
-  color: #00449e;
-}
-a:link:hover{
-  transition: color .15s ease-in;
-  opacity: .5; transition: opacity .15s ease-in; 
-}
-a:link:active{
-  transition: color .15s ease-in;
-  opacity: .8; transition: opacity .15s ease-out; 
-}
-a:link:focus {
-  .link:focus   {
-    transition: color .15s ease-in;
-    outline: 1px dotted currentColor;
-    opacity: .5; transition: opacity .15s ease-in;
-  }
-}
-a:hover:active {
-  .link:focus   {
-    transition: color .15s ease-in;
-    outline: 1px dotted currentColor;
-    opacity: .5; transition: opacity .15s ease-in;
-  }
-}
-ul {         
-
+/* List Styles */
+ul {
   padding-left: 1em;
 }
 li {
   padding-bottom: 1em;
 }
 
-  html, body {
-    overflow-x: hidden;
-  }
- 
-  .tooltip {
-    transition: opacity 0.2s ease;
-    opacity: 0;
-    position: absolute;
-    left: calc(100% + 0.5rem); /* positions tooltip a bit to the right */
-    top: 50%;                  /* vertically centered */
-    transform: translateY(-50%);
-    white-space: nowrap;
-    pointer-events: none;
-  }
-  
-  /* When hovering over the relative container, show the tooltip */
-  .relative:hover .tooltip {
-    opacity: 1 !important;
-  } 
-  
-
-  
-  
-  .relative:hover i,
-  .relative:hover .label-text {
-    color: #ef4e16 !important;
-  }
-  
-  .tooltip {
-    pointer-events: none;
-    cursor: default;
-    transition: opacity 0.2s ease;
-    opacity: 0;
-    position: absolute;
-    left: calc(100% + 0.5rem);
-    top: 50%;
-    max-width: 500px;
-    transform: translateY(-50%);
-    min-width: 250px;
-    word-wrap: break-word;
-    white-space: normal;
-    background-color: white;
-    color: #000;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
-    box-shadow:0px 0px 8px 2px rgba( 0, 0, 0, 0.2 )
-  }
-  @media (max-width: 480px) {
-    .tooltip {
-      max-width: 60vw;
-      min-width: 20vw;
-    }
-  }
-  .tooltip.active {
-    opacity: 1 !important;
-  }
-
-  #signupModal.dn {
-    display: none !important;
-  }
-
-  .lh-copy p {
-   
-    line-height: 1.5;
-  }
-
- .crash-orange {color:#ef4e16 !important;}
- .bg-crash-orange {background-color:#ef4e16 !important;}
- .b--crash-orange {border-color:#ef4e16 !important;}
-
- .crash-yellow {color:#ffce31 !important;}
- .bg-crash-yellow {background-color:#ffce31 !important;}
-
-#week-of-jan-19 {
-  color: #ef4e16 ;
+/* Anchor Styles (Light Mode) */
+a {
+  text-decoration: none;
+  transition: color 0.15s ease-in, opacity 0.15s ease-in;
+  opacity: 1;
 }
+a:link,
+a:visited {
+  color: #00449e;
+}
+a:hover {
+  opacity: 0.5;
+}
+a:active {
+  opacity: 0.8;
+}
+a:focus {
+  outline: 1px dotted currentColor;
+  opacity: 0.5;
+}
+
+/* Tooltip Styles */
+.tooltip {
+  position: absolute;
+  left: calc(100% + 0.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+  transition: opacity 0.2s ease;
+  opacity: 0;
+  pointer-events: none;
+  cursor: default;
+  max-width: 500px;
+  min-width: 250px;
+  word-wrap: break-word;
+  white-space: normal;
+  background-color: #fff;
+  color: #000;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.2);
+}
+.relative:hover .tooltip,
+.tooltip.active {
+  opacity: 1 !important;
+}
+@media (max-width: 480px) {
+  .tooltip {
+    max-width: 60vw;
+    min-width: 20vw;
+  }
+}
+
+/* Dark Mode Overrides */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #222222;
+    color: #eeeeee;
+  }
+  
+  /* Tachyons Overrides (Dark Mode) */
+  .bg-white { background-color: #111111 !important; }
+  .bg-near-white,
+  .bg-light-gray { background-color: #333333 !important; }
+  .black { color: #CCCCCC !important; }
+  .mid-gray { color: #bbbbbb !important; }
+  .dark-gray { color: #aaaaaa !important; }
+  
+  /* Anchor Styles (Dark Mode) */
+  a:link,
+  a:visited {
+    color: #357edd;
+  }
+  a:hover {
+    opacity: 0.5;
+  }
+  a:active {
+    opacity: 0.8;
+  }
+  a:focus {
+    outline: 1px dotted currentColor;
+    opacity: 0.5;
+  }
+  
+  .b--black-10 {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+}
+
+/* Breakpoints */
+@media screen and (min-width: 50em) {
+  /* Medium and up */
+  .dn-m { display: none !important; }
+  .db-m { display: block !important; }
+  .ph0-m { padding-left: 0 !important; padding-right: 0 !important; }
+  .w-30-m { width: 30% !important; }
+  .w-70-m { width: 70% !important; }
+  .f4-m { font-size: 1.25rem !important; }
+  .f3-m { font-size: 1.5rem !important; }
+  .mr3-m { margin-right: 1rem !important; }
+  .mr4-m { margin-right: 1.5rem !important; }
+}
+@media screen and (max-width: 49.99em) {
+  /* Small screens */
+  .dn-m { display: block !important; }
+  .db-m { display: none !important; }
+}
+
+/* Modal and Utility Styles */
+#signupModal.dn {
+  display: none !important;
+}
+.lh-copy p {
+  line-height: 1.5;
+}
+
+/* Crash Color Utilities */
+.crash-orange { color: #ef4e16 !important; }
+.bg-crash-orange { background-color: #ef4e16 !important; }
+.b--crash-orange { border-color: #ef4e16 !important; }
+.crash-yellow { color: #ffce31 !important; }
+.bg-crash-yellow { background-color: #ffce31 !important; }
+
+/* ID-Specific Overrides */
+#week-of-jan-19,
 #period-heading {
-  color: #ef4e16 ;
+  color: #ef4e16;
 }
-
-h1 {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-size: 2.25rem;
-  font-weight:600
- }
- h2 {
-  margin-top: 0;
-  margin-bottom: .5em;
-  font-size: 1.5rem;
-  font-weight:600
- }
- h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-size: 1.25rem;
-  font-weight:600
- }
- h4 {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-size: 1.25rem;
-  font-weight:600
- }
- p{
-  line-height:1.5 
- }
- strong{
-  font-weight:600
- }
