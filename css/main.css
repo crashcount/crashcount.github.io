@@ -24,6 +24,9 @@ body {
   .bg-near-white {
     background-color: #333333 !important;
   }
+  .bg-light-gray {
+    background-color: #333333 !important;
+  }
   .black {
     color: #CCCCCC !important;
   }
@@ -33,18 +36,116 @@ body {
   .dark-gray {
     color: #aaaaaa !important;
   }
+
+
+  a:link{
+    text-decoration: none;
+    transition: color .15s ease-in;
+    color: #8692fc;
+    opacity: 1; transition: opacity .15s ease-in;
+  }
   a:link,
   a:visited {
-    color: #bb86fc;
+    transition: color .15s ease-in;
+    opacity: 1; transition: opacity .15s ease-in;
+    color: #357edd;
   }
-  
-  a:hover,
-  a:active {
-    color: #9a67ea;
+  a:link:hover{
+    transition: color .15s ease-in;
+    opacity: .5; transition: opacity .15s ease-in; 
   }
-  
+  a:link:active{
+    transition: color .15s ease-in;
+    opacity: .8; transition: opacity .15s ease-out; 
+  }
+  a:link:focus {
+    .link:focus   {
+      transition: color .15s ease-in;
+      outline: 1px dotted currentColor;
+      opacity: .5; transition: opacity .15s ease-in;
+    }
+  }
+  a:hover:active {
+    .link:focus   {
+      transition: color .15s ease-in;
+      outline: 1px dotted currentColor;
+      opacity: .5; transition: opacity .15s ease-in;
+    }
+  }
+  .b--black-10 {
+    border-color: rgba( 255, 255, 255, .1 ) !important;
+  }
+  @media screen and (min-width: 50em) {
+    /* Hide elements with .dn-m on medium screens and above */
+    .dn-m { display: none !important; }
+    /* Show elements with .db-m on medium screens and above */
+    .db-m { display: block !important; }
+  }
+
 }
-  
+
+  /* Custom media query for medium breakpoint at 40em */
+  @media screen and (min-width: 50em) {
+    /* Elements with .dn-m will be hidden on medium+ screens */
+    .dn-m { display: none !important; }
+    /* Elements with .db-m will be shown on medium+ screens */
+    .db-m { display: block !important; }
+    /* Custom overrides for spacing and sizing */
+    .ph0-m { padding-left: 0 !important; padding-right: 0 !important; }
+    .w-30-m { width: 30% !important; }
+    .w-70-m { width: 70% !important; }
+    .f4-m { font-size: 1.25rem !important; }
+    .f3-m { font-size: 1.5rem !important; }
+    .mr3-m { margin-right: 1rem !important; }
+    .mr4-m { margin-right: 1.5rem !important; }
+  }
+  @media screen and (max-width: 49.99em) {
+    /* On small screens, ensure mobile elements show and desktop ones hide */
+    .dn-m { display: block !important; }
+    .db-m { display: none !important; }
+  }
+a:link{
+  text-decoration: none;
+  transition: color .15s ease-in;
+  color: #357edd;
+  opacity: 1; transition: opacity .15s ease-in;
+}
+a:link,
+a:visited {
+  transition: color .15s ease-in;
+  opacity: 1; transition: opacity .15s ease-in;
+  color: #00449e;
+}
+a:link:hover{
+  transition: color .15s ease-in;
+  opacity: .5; transition: opacity .15s ease-in; 
+}
+a:link:active{
+  transition: color .15s ease-in;
+  opacity: .8; transition: opacity .15s ease-out; 
+}
+a:link:focus {
+  .link:focus   {
+    transition: color .15s ease-in;
+    outline: 1px dotted currentColor;
+    opacity: .5; transition: opacity .15s ease-in;
+  }
+}
+a:hover:active {
+  .link:focus   {
+    transition: color .15s ease-in;
+    outline: 1px dotted currentColor;
+    opacity: .5; transition: opacity .15s ease-in;
+  }
+}
+ul {         
+
+  padding-left: 1em;
+}
+li {
+  padding-bottom: 1em;
+}
+
   html, body {
     overflow-x: hidden;
   }
@@ -63,7 +164,7 @@ body {
   /* When hovering over the relative container, show the tooltip */
   .relative:hover .tooltip {
     opacity: 1 !important;
-  }
+  } 
   
 
   
@@ -81,8 +182,11 @@ body {
     position: absolute;
     left: calc(100% + 0.5rem);
     top: 50%;
+    max-width: 500px;
     transform: translateY(-50%);
-    white-space: nowrap;
+    min-width: 250px;
+    word-wrap: break-word;
+    white-space: normal;
     background-color: white;
     color: #000;
     padding: 0.25rem 0.5rem;
@@ -90,10 +194,20 @@ body {
     font-size: 0.875rem;
     box-shadow:0px 0px 8px 2px rgba( 0, 0, 0, 0.2 )
   }
-  
+  @media (max-width: 480px) {
+    .tooltip {
+      max-width: 60vw;
+      min-width: 20vw;
+    }
+  }
   .tooltip.active {
     opacity: 1 !important;
   }
+
+  #signupModal.dn {
+    display: none !important;
+  }
+
   .lh-copy p {
    
     line-height: 1.5;
@@ -106,6 +220,13 @@ body {
  .crash-yellow {color:#ffce31 !important;}
  .bg-crash-yellow {background-color:#ffce31 !important;}
 
+#week-of-jan-19 {
+  color: #ef4e16 ;
+}
+#period-heading {
+  color: #ef4e16 ;
+}
+
 h1 {
   margin-top: 0;
   margin-bottom: 0;
@@ -114,7 +235,7 @@ h1 {
  }
  h2 {
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: .5em;
   font-size: 1.5rem;
   font-weight:600
  }
@@ -124,7 +245,7 @@ h1 {
   font-size: 1.25rem;
   font-weight:600
  }
- h3 {
+ h4 {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 1.25rem;
