@@ -8,7 +8,10 @@ body {
   color: #000000;
   transition: background-color 0.2s, color 0.2s;
 }
-
+img {
+  max-width: 100%;
+  height: auto;
+}
 /* Tachyons Overrides (Light Mode) */
 .bg-white { background-color: #ffffff; }
 .black { color: #000000; }
