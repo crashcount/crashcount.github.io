@@ -17,7 +17,8 @@ document.addEventListener("DOMContentLoaded", function() {
             loadNextPage();
           }
         });
-      }, { rootMargin: '200px' });
+      }, { rootMargin: '50px' }); 
+      
   
       observer.observe(trigger);
   

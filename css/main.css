@@ -74,12 +74,11 @@ a:focus {
   left: calc(100% + 0.5rem);
   top: 50%;
   transform: translateY(-50%);
-  transition: opacity 0.2s ease;
+  visibility: hidden;
   opacity: 0;
   pointer-events: none;
-  cursor: default;
-  max-width: 500px;
-  min-width: 250px;
+  transition: opacity 0.2s ease;
+  width: 250px;
   word-wrap: break-word;
   white-space: normal;
   background-color: #fff;
@@ -91,8 +90,11 @@ a:focus {
 }
 .relative:hover .tooltip,
 .tooltip.active {
-  opacity: 1 !important;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
 }
+
 @media (max-width: 480px) {
   .tooltip {
     max-width: 60vw;
