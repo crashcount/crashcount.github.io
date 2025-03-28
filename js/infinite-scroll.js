@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
       }
     });
-  }, { rootMargin: '0px' });
+  }, { rootMargin: '70px' });
 
   observer.observe(trigger);
 
