@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
     currentPage++;
     let baseURL = container.getAttribute('data-baseurl');
     if (!baseURL.endsWith('/')) baseURL += '/';
-    const nextURL = `${baseURL}page/${currentPage}/`;
+    const nextURL = `${baseURL}page/${currentPage}/?_=${Date.now()}`;
 
     return fetch(nextURL)
       .then(res => res.ok ? res.text() : Promise.reject('No more pages'))
