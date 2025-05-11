@@ -20,21 +20,24 @@ img {
 h1 {
   margin: 0;
   font-size: 2.25rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 h2 {
   margin: 0 0 0.5em 0;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.75rem;
+  font-weight: 500;
 }
 h3, h4 {
   margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 p {
   line-height: 1.5;
+  font-size: 1.5rem;
+  font-weight: 200; /* Light weight for body text */
 }
+
 strong {
   font-weight: 600;
 }
@@ -175,4 +178,36 @@ a:focus {
 #week-of-jan-19,
 #period-heading {
   color: #ef4e16;
+}
+
+/* ── Timeline card toggle ──────────────────────────────────────── */
+summary::-webkit-details-marker {      /* remove default ▶ marker */
+  display: none;
+}
+summary::marker {                      /* Firefox / generic */
+  content: '';
+}
+
+/* rotate custom arrow when open (element has class .arrow-toggle) */
+details[open] .arrow-toggle {
+  transform: rotate(90deg);
+}
+
+/* ── Timeline pseudo‑headers — year & month ───────────────────── */
+/* .tl-item[data-year]::before {
+  content: attr(data-year);
+  display: block;
+  margin: 2rem 0 .5rem;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 1;
+  border-bottom: 1px solid var(--hairline, #ccc);
+} */
+.tl-item[data-month]::before {
+  content: attr(data-month) ' ' attr(data-year)  ;
+  display: block;
+  margin: 1.25rem 0 .25rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1;
 }
