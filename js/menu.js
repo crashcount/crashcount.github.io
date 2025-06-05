@@ -18,8 +18,10 @@ document.addEventListener('DOMContentLoaded', function() {
           mobileMenu.classList.add('dn');
           hamburgerIcon.classList.remove('dn');
           closeIcon.classList.add('dn');
+          // clear any open autocomplete
+          const suggMobile = document.getElementById('suggestions-mobile');
+          if (suggMobile) suggMobile.innerHTML = '';
         });
       });
     }
   });
-  

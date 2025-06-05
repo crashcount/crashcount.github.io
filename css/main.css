@@ -34,8 +34,8 @@ h3, h4 {
 }
 p {
   line-height: 1.5;
-  font-size: 1.5rem;
-  font-weight: 200; /* Light weight for body text */
+  font-size: 1.25rem;
+  font-weight: 300; /* Light weight for body text */
 }
 
 strong {
@@ -114,11 +114,22 @@ a:focus {
   /* Tachyons Overrides (Dark Mode) */
   .bg-white { background-color: #111111 !important; }
   .bg-near-white,
-  .bg-light-gray { background-color: #333333 !important; }
+  .bg-light-gray { background-color: #222222 !important; }
   .black { color: #CCCCCC !important; }
   .mid-gray { color: #bbbbbb !important; }
   .dark-gray { color: #aaaaaa !important; }
-  
+  .bg-white-50 { background-color: rgb(0,0,0,.5) !important;}
+  .bg-near-white { background-color: #222222 !important; }
+  .bg-light-gray { background-color: #222222 !important; }
+  /* ── Autocomplete dropdown positioning fixes ──────────────── */
+  .suggest-list {
+    background: #000  !important;
+    box-shadow: 0 2px 6px rgba(1,1,1,.07)  !important;
+  }
+
+  .suggest-list:not(:empty) {
+    border-color: rgba(1,1,1,.1);
+  }
   /* Anchor Styles (Dark Mode) */
   a:link,
   a:visited {
@@ -139,7 +150,10 @@ a:focus {
     border-color: rgba(255, 255, 255, 0.1) !important;
   }
 }
-
+/* Hide “Next” pagination links inside timelines once InfiniteScroll is active */
+#timeline nav.tr {
+  display: none;
+}
 /* Breakpoints */
 @media screen and (min-width: 50em) {
   /* Medium and up */
@@ -152,6 +166,24 @@ a:focus {
   .f3-m { font-size: 1.5rem !important; }
   .mr3-m { margin-right: 1rem !important; }
   .mr4-m { margin-right: 1.5rem !important; }
+  .w5\.5-ns { width: 32rem !important; }
+
+  .mod-crash     { grid-area: crash; }
+  .mod-contact   { grid-area: contact; }
+  .mod-article   { grid-area: content; }
+  .mod-overlap   { grid-area: overlap; }
+  .mod-timeline  { grid-area: timeline; }
+
+  .layout-dynamic {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 32rem 1fr;
+    grid-template-areas:
+      "crash    content"
+      "contact  content"
+      "overlap  content"
+      "timeline content";
+  }
 }
 @media screen and (max-width: 49.99em) {
   /* Small screens */
@@ -210,4 +242,116 @@ details[open] .arrow-toggle {
   font-weight: 600;
   font-size: 1.5rem;
   line-height: 1;
+}
+
+/* ── Index page layout ───────────────────────────────────────── */
+
+/* MOBILE: single column (natural DOM order) */
+.layout-index {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── Dynamic page layout (single source of truth) ────────────── */
+
+/* MOBILE (default): simple vertical flow = DOM order */
+.layout-dynamic {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* DESKTOP ≥50em: two-column CSS Grid */
+@media screen and (min-width: 50em) {
+  .layout-dynamic {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 22rem 1fr;
+    grid-template-areas:
+      "crash    content"
+      "contact  content"
+      "overlap  content"
+      "timeline content";
+  }
+
+  .mod-crash     { grid-area: crash; }
+  .mod-contact   { grid-area: contact; }
+  .mod-article   { grid-area: content; }
+  .mod-overlap   { grid-area: overlap; }
+  .mod-timeline  { grid-area: timeline; }
+
+  /* ----- Index desktop layout ----- */
+  .layout-index {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 22rem 1fr;
+    grid-template-areas:
+      "crash   content"
+      "geo     content"
+      "timeline content";
+  }
+
+  .mod-crash    { grid-area: crash; }
+  .mod-main     { grid-area: content; }
+  .mod-geo      { grid-area: geo; }
+  .mod-timeline { grid-area: timeline; }
+}
+
+/* ── Find‑my‑neighborhood autocomplete ─────────────────────────── */
+.suggest-list { list-style: none; max-height: 14rem; overflow-y: auto; margin: 0; padding: 0; }
+.suggest-item { padding: .5rem .75rem; cursor: pointer; }
+.suggest-item:hover { background: #f3f3f3; }
+
+/* ── Autocomplete dropdown positioning fixes ──────────────── */
+.suggest-list {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: .25rem;          /* small gap below input */
+  width: 100%;
+  background: #fff;
+  z-index: 1000;
+  border: 1px solid transparent;   /* hide until filled */
+  border-radius: .25rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,.07);
+}
+
+.suggest-list:not(:empty) {
+  border-color: rgba(0,0,0,.1);
+}
+
+/* ── Chip list for composite pages ───────────────────────────── */
+.geo-bar { display:flex; flex-wrap:wrap; }
+.chip {
+  padding:.25rem .6rem;
+  background:#f6f6f6;
+  border-radius:9999px;
+  font-size:.875rem;
+  transition:background .15s;
+}
+.chip:hover { background:#e2e2e2; }
+
+
+/* ── Pedestrian cause grid ───────────────────────────── */
+.ped-grid {
+  display: grid;
+  grid-template-columns: max-content repeat(3, auto);
+  column-gap: 2rem;
+  row-gap: 0.25rem;
+  align-items: center;
+  justify-content: center;  /* center whole grid */
+  margin: 0 auto;           /* horizontally center card */
+}
+@media (max-width: 30em) {
+  .ped-grid {
+    grid-template-columns: max-content repeat(3, auto);
+    column-gap: 1rem;
+  }
+}
+
+/* On large screens open citations and hide arrow */
+@media (min-width: 64rem) {
+  .citation-details[open] summary { cursor: default; pointer-events: none; }
+  .citation-details summary .arrow-toggle { display: none; }
 }
