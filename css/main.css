@@ -7,6 +7,10 @@ body {
   background-color: #ffffff;
   color: #000000;
   transition: background-color 0.2s, color 0.2s;
+  font-family: "Avenir Next LT Pro", "Avenir Next", Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
 }
 img {
   max-width: 100%;
@@ -35,7 +39,7 @@ h3, h4 {
 p {
   line-height: 1.5;
   font-size: 1.25rem;
-  font-weight: 300; /* Light weight for body text */
+  font-weight: 400; /* Light weight for body text */
 }
 
 strong {
@@ -55,6 +59,7 @@ a {
   text-decoration: none;
   transition: color 0.15s ease-in, opacity 0.15s ease-in;
   opacity: 1;
+  font-weight: 600; /* Medium weight for links */
 }
 a:link,
 a:visited {
@@ -189,6 +194,15 @@ a:focus {
   /* Small screens */
   .dn-m { display: block !important; }
   .db-m { display: none !important; }
+  /* Mobile: bump body copy weight for better legibility */
+  p { font-weight: 500; }
+  h1, h2, h3, h4 {
+    font-weight: 600 !important; /* Medium weight for headings */
+  }
+  /* Mobile: make bold text stand out more */
+  strong, b {
+    font-weight: 700 !important;  /* Boldest available weight */
+  }
 }
 
 /* Modal and Utility Styles */
