@@ -133,7 +133,7 @@
     out.innerHTML = DISPLAY_ORDER.filter(t => hits[t]).map(t => {
       const h = hits[t];
       // assumes your Hugo URLs follow /<type>/<id>/
-      const url = `/${t}/${h.id}/`;
+      const url = `/${t}/${h.id.toLowerCase()}/`;
       return `<div class="geo-card">
         <h3>${h.name}</h3>
         <p><a href="${url}">View details →</a></p>
@@ -163,7 +163,7 @@
       const { hits, slug } = intersectPoint(pt, polygons);
       if (slug) {
         const label = encodeURIComponent(value.trim());
-        window.location.href = `/find/${slug}/?label=${label}`;
+        window.location.href = `/find/${slug.toLowerCase()}/?label=${label}`;
         return;                                      // stop here; browser will navigate
       }
       renderResults(hits);
