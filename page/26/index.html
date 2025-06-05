@@ -1,0 +1,679 @@
+<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.147.3"><link rel=preload href=https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css></noscript><link rel=preload href='/css/tachyons.css?v=1749138525' as=style onload="this.onload=null,this.rel=`stylesheet`"><noscript><link rel=stylesheet href='/css/tachyons.css?v=1749138525'></noscript><link rel=preload href='/css/main.css?v=1749138525' as=style onload="this.onload=null,this.rel=`stylesheet`"><noscript><link rel=stylesheet href='/css/main.css?v=1749138525'></noscript><link rel=icon type=image/png href=/favicons/favicon-96x96.png sizes=96x96><link rel=icon type=image/svg+xml href=/favicons/favicon.svg><link rel="shortcut icon" href=/favicons/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/favicons/apple-touch-icon.png><meta name=apple-mobile-web-app-title content="Crash Count"><link rel=manifest href=/favicons/site.webmanifest><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Crash Count - Tracking Traffic Violence in NYC</title>
+<meta name=description content="Crash Count exposes the human cost of traffic violence in New York City, documenting crashes, injuries, and fatalities. No spin, just the harsh reality of our streets."><link rel=canonical href=/><meta property="og:title" content="Crash Count - Tracking Traffic Violence in NYC"><meta property="og:description" content="Crash Count exposes the human cost of traffic violence in New York City, documenting crashes, injuries, and fatalities. No spin, just the harsh reality of our streets."><meta property="og:url" content="/"><meta property="og:type" content="article"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Crash Count - Tracking Traffic Violence in NYC"><meta name=twitter:description content="Crash Count exposes the human cost of traffic violence in New York City, documenting crashes, injuries, and fatalities. No spin, just the harsh reality of our streets."><script defer src=https://umami.crashcountnyc.com/script.js data-website-id=4612ccf8-71f7-4271-a00c-e6719669a37a></script></head><body><div class="mw8 pa3 center avenir"><header><div class="center ph1"><nav class="flex flex-wrap items-center justify-between w-100 border-box pa3 ph0-m"><div class="w-30-m w-60"><a class="mid-gray link dim tl" href=/ title="Crash Count"><picture><source srcset=/images/crash-count-logo-dark.avif type=image/avif media="(prefers-color-scheme: dark)"><source srcset=/images/crash-count-logo-dark.webp type=image/webp media="(prefers-color-scheme: dark)"><source srcset=/images/crash-count-logo.avif type=image/avif><source srcset=/images/crash-count-logo.webp type=image/webp><img src=/images/crash-count-logo.png width=295 height=76 alt="Crash Count"></picture></a></div><div class="w2 tl db dn-m"><button id=menuToggle aria-label="open or close menu" class="bg-transparent bn pa0 pointer">
+<i id=hamburgerIcon class="gray bi bi-list f2"></i>
+<i id=closeIcon class="gray bi bi-x f2 dn"></i></button></div><div class="dn db-m w-80 w-70-m pv4"><div class="flex flex-wrap justify-end items-center"><form id=find-form class="mr3 flex items-center relative"><input id=addr class="input-reset ba b--black-20 pv2 ph3 mr1 br2 f6" type=search placeholder="Enter NYC address…" autocomplete=street-address data-1p-ignore><ul id=suggestions class=suggest-list></ul></form><a class="link dim dark-gray f6 f4-m dib mr3 mr4-m" href=/ style=color:#333 title=NYC>NYC
+</a><a class="link dim dark-gray f6 f4-m dib mr3 mr4-m" href=/take_action/ style=color:#333 title="Take Action">Take Action
+</a><a class="link dim dark-gray f6 f4-m dib mr3 mr4-m" href=/about/ style=color:#333 title=About>About</a></div></div></nav></div><div id=mobileMenu style=top:5rem class="dn fixed left-0 w-100 vh-100 bg-white tc z-3"><div class=pv4><form id=find-form-mobile class="ph3 relative"><input id=addr-mobile class="w-80 ba b--black-20 pv2 ph3 br2 f5" placeholder=Address… autocomplete=street-address type=search data-1p-ignore><ul id=suggestions-mobile class=suggest-list></ul></form><a class="link dim dark-gray f3 db pv3" style=color:#333 href=/ title=NYC>NYC
+</a><a class="link dim dark-gray f3 db pv3" style=color:#333 href=/take_action/ title="Take Action">Take Action
+</a><a class="link dim dark-gray f3 db pv3" style=color:#333 href=/about/ title=About>About</a></div></div></header><main><div class=layout-index><div class=mod-crash><div id=crash-counter class="f4 f5-ns fw5 fw6-ns w-100 center bg-near-white pa2 ba b--dark-gray br2 shadow-4"><div class="tc ma2 crash-orange ttu tracked f3 f5-ns fw6 fw7-ns">Crash Count for New York City</div><div class="tc lh-copy"><div class=counter-row><span class="relative dib"><i class="bi bi-car-front mid-gray"></i>
+<span class=label-text>Crashes:</span>
+<span class="tooltip pa1 f7 br2">Collisions involving cars, bikes, and pedestrians.
+</span></span><span class=value><span class=fw5>323,111</span></span></div><div class=counter-row><span class="relative dib"><i class="bi bi-person-standing mid-gray"></i>
+<span class=label-text>All Injuries:</span>
+<span class="tooltip pa1 f7 br2">Any injury from a reported crash.
+</span></span><span class=value><span class=fw5>180,301</span></span></div><div class=counter-row><span class="relative dib"><span class=mid-gray><svg class="bi bi-person-crutch" width="1.1em" height="1.1em" fill="currentcolor" viewBox="0 0 16 16"><path d="M8.25 3c.83.0 1.5-.67 1.5-1.5S9.08.0 8.25.0s-1.5.67-1.5 1.5S7.42 3 8.25 3M6.5 15.25c.05.26.34.75.75.75s.75-.34.75-.75l-.5-4.75c0-.28.22-.5.5-.5s.5.22.5.5l-.23 3.69c0 .41.34.75.75.75s.75-.34.75-.75L10 6.75c0-.14.04-.61.17-.68.2-.11.15.54.15.68l.13 2.2c0 .21.28.44.28.44l.98 6.06.6-.15s-.98-5.95-.91-6c.4-.28.25-.64.16-1.05-.22-1.11-.02-1.37-.01-1.88.04-2.98-.21-3.09-2.52-3.06-.61.0-2.44.32-2.44.32-1.09.2-1.6-.08-2.34 3.12-.16.67-.24 2.51-.24 2.51.0.41.34.75.75.75s.83-.34.75-.75c-.23-1.13.0-2.5.0-2.5.0-.25.1-.41.24-.41s.44.0.48.42c.15 1.43-.15 6.44.28 8.5z"/></svg></span>
+<span class=label-text>Moderate:</span>
+<span class="tooltip pa1 f7 br2">Broken bones, concussions, and other serious injuries.
+</span></span><span class=value><span class=fw5>38,485</span></span></div><div class=counter-row><span class="relative dib"><i class="bi bi-person-wheelchair mid-gray"></i>
+<span class=label-text>Serious:</span>
+<span class="tooltip pa1 f7 br2">Life-altering injuries: amputations, paralysis, severe trauma.
+</span></span><span class=value><span class=fw6>2,288</span></span></div><div class=counter-row><span class="relative dib"><i class="bi bi-file-excel-fill mid-gray"></i>
+<span class=label-text>Deaths:</span>
+<span class="tooltip pa1 f7 br2">Lives lost to traffic violence.
+</span></span><span class=value><span class=fw7>1,011</span></span></div><div class="mt1 f7-ns f5 gray data-date">Data from Jan&nbsp;1, 2022 to May 29, 2025</div></div></div><div id=ped-cause class="f4 f5-ns fw5 fw6-ns w-100 center bg-near-white pa2 mt3 ba b--dark-gray br2 shadow-4"><div class="tc ma2 crash-orange ttu tracked f3 f5-ns fw6 fw7-ns">Who’s Injuring and Killing Pedestrians in New York City?</div><div class="ped-grid f5 lh-copy"><span></span>
+<span class=tc><svg class="bi bi-person-crutch" width="1.1em" height="1.1em" fill="currentcolor" viewBox="0 0 16 16"><path d="M8.25 3c.83.0 1.5-.67 1.5-1.5S9.08.0 8.25.0s-1.5.67-1.5 1.5S7.42 3 8.25 3M6.5 15.25c.05.26.34.75.75.75s.75-.34.75-.75l-.5-4.75c0-.28.22-.5.5-.5s.5.22.5.5l-.23 3.69c0 .41.34.75.75.75s.75-.34.75-.75L10 6.75c0-.14.04-.61.17-.68.2-.11.15.54.15.68l.13 2.2c0 .21.28.44.28.44l.98 6.06.6-.15s-.98-5.95-.91-6c.4-.28.25-.64.16-1.05-.22-1.11-.02-1.37-.01-1.88.04-2.98-.21-3.09-2.52-3.06-.61.0-2.44.32-2.44.32-1.09.2-1.6-.08-2.34 3.12-.16.67-.24 2.51-.24 2.51.0.41.34.75.75.75s.83-.34.75-.75c-.23-1.13.0-2.5.0-2.5.0-.25.1-.41.24-.41s.44.0.48.42c.15 1.43-.15 6.44.28 8.5z"/></svg></span>
+<span class=tc><i class="bi bi-person-wheelchair"></i></span>
+<span class=tc><i class="bi bi-file-excel-fill"></i></span>
+<span class="tl fw6">SUVs/Cars</span>
+<span class="tc fw5">6,977</span>
+<span class="tc fw6">498</span>
+<span class="tc fw7">298</span>
+<span class="tl fw6">Trucks/Buses</span>
+<span class="tc fw5">623</span>
+<span class="tc fw6">103</span>
+<span class="tc fw7">92</span>
+<span class="tl fw6">Bikes</span>
+<span class="tc fw5">508</span>
+<span class="tc fw6">52</span>
+<span class="tc fw7">11</span>
+<span class="tl fw6">Motos/Mopeds</span>
+<span class="tc fw5">361</span>
+<span class="tc fw6">44</span>
+<span class="tc fw7">10</span></div></div></div><div class=mod-main><div class=mb4></div><div class=mb5><section class="citywide-summary mb5"><div class="flex flex-column flex-row-ns"><div class="w-100 order-1 order-1-ns pl2"><picture><source media="(max-width: 480px)" srcset=/citywide/nyc/featured_image_hu_4a66fa5c1a94a5ff.jpg><source media="(min-width: 481px)" srcset=/citywide/nyc/featured_image_hu_594786f00c714a05.jpg><img src=/citywide/nyc/featured_image_hu_594786f00c714a05.jpg alt="No More Blood for Speed: Make NYC Streets Safe Now" width=768 height=511></picture><h2 class=mt3>No More Blood for Speed: Make NYC Streets Safe Now</h2><div class="lh-copy measure-wide markdown-content"><h2 id=period-heading>New York City: Jan 1, 2022 - Jun 4, 2025</h2><h3 id=the-toll-of-the-streets>The Toll of the Streets</h3><p>A woman, 68, crossing with the signal in Brooklyn. Dead. A 14-year-old boy on a bike in Staten Island. Blood on the pavement, leg torn open. A 61-year-old cyclist in Manhattan. Bones crushed, helmet split. These are not rare stories. They are the city’s daily news.</p><p><strong>In the last 12 months, 260 people died on New York City streets.</strong> Over 51,000 were hurt. <strong>732 suffered injuries so severe they may never walk the same again.</strong> Children, elders, workers. No one is spared. The <a href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>numbers do not lie</a>.</p><h3 id=the-machines-that-kill>The Machines That Kill</h3><p><strong>Cars and SUVs are the main killers.</strong> In three years, they took 298 lives and left 498 with serious injuries. Trucks and buses killed 92. Motorcycles and mopeds, 10. Bikes, 11. The city is a machine that chews up flesh and bone. The street is not safe for the old, the young, or the careful.</p><h3 id=what-leaders-have-doneand-what-they-havent>What Leaders Have Done—And What They Haven’t</h3><p>The city passed Sammy’s Law. Now, leaders can lower speed limits to 20 mph. They have not done it citywide. Speed cameras, proven to save lives, are at risk if Albany does not act. The city built more bike lanes and redesigned intersections, but the blood still runs. The numbers drop, then rise again. <strong>Every delay is another body on the slab.</strong></p><h3 id=the-cost-of-waiting>The Cost of Waiting</h3><p><strong>This is not fate.</strong> These are not accidents. They are choices. Choices to wait, to water down, to delay. Choices that kill. The city has the tools. The leaders have the power. They must use it.</p><p><strong>Call your council member. Call the mayor. Demand a citywide 20 mph speed limit. Demand the protection of speed cameras. Demand streets that do not kill.</strong></p><p>Do not wait for another name to be carved in stone. <a href=../../take_action/>Act now</a>.</p></div><section id=faq class=mt3><h2 class="f3 fw7 mb3">Frequently Asked Questions</h2><details class="mb3 faq-item"><summary class="pointer fw6 flex items-center"><span class="arrow-toggle f4 mr2">▸</span>
+How many people have died or been seriously injured in New York City traffic crashes in the last year?</summary><div class="mt2 lh-copy">In the last 12 months, 260 people died and 732 suffered serious injuries on New York City streets, with over 51,000 injured overall. See the <a href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>official crash data</a>.</div></details><details class="mb3 faq-item"><summary class="pointer fw6 flex items-center"><span class="arrow-toggle f4 mr2">▸</span>
+What types of vehicles caused injuries and deaths to pedestrians in New York City?</summary><div class="mt2 lh-copy">Cars and SUVs killed 298 and seriously injured 498. Trucks and buses killed 92 and seriously injured 103. Motorcycles and mopeds killed 10 and seriously injured 44. Bikes killed 11 and seriously injured 52. Source: <a href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>NYC crash data</a>.</div></details><details class="mb3 faq-item"><summary class="pointer fw6 flex items-center"><span class="arrow-toggle f4 mr2">▸</span>
+Are these crashes preventable, or just 'accidents'?</summary><div class="mt2 lh-copy">These crashes are preventable. Lower speeds, better street design, and enforcement save lives. They are not random or inevitable.</div></details><details class="mb3 faq-item"><summary class="pointer fw6 flex items-center"><span class="arrow-toggle f4 mr2">▸</span>
+What can local politicians do to stop traffic violence?</summary><div class="mt2 lh-copy">They can lower speed limits citywide to 20 mph, protect and expand speed cameras, and redesign streets to protect people, not cars.</div></details><details class="mb3 faq-item"><summary class="pointer fw6 flex items-center"><span class="arrow-toggle f4 mr2">▸</span>
+What has the city done recently to address traffic violence?</summary><div class="mt2 lh-copy">The city passed Sammy’s Law to allow lower speed limits, expanded bike lanes, and redesigned intersections, but has not yet implemented a citywide 20 mph limit.</div></details><details class="mb3 faq-item"><summary class="pointer fw6 flex items-center"><span class="arrow-toggle f4 mr2">▸</span>
+How can I help make streets safer?</summary><div class="mt2 lh-copy">Call your council member and the mayor. Demand a citywide 20 mph speed limit and protection for speed cameras. Join advocacy groups and speak out.</div></details></section><script>document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll(".faq-item").forEach(e=>{const t=e.querySelector(".arrow-toggle");t&&e.addEventListener("toggle",()=>{t.textContent=e.open?"▾":"▸"})})})</script><details class="mt4 citation-details"><summary class="pointer fw6 flex items-center"><span class="arrow-toggle f4 mr2">▸</span>
+1 Citation</summary><div class=mt3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-database mr2"></i>
+<span><a class="link black" href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>Motor Vehicle Collisions – CrashID 4816863</a>,
+NYC Open Data,
+Accessed 2025-06-04</span></li></ul></div></details></div></div></section><script>document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll("details.citation-details").forEach(e=>{const t=e.querySelector(".arrow-toggle");t&&e.addEventListener("toggle",()=>{t.textContent=e.open?"▾":"▸"})})})</script></div><div class=mb5></div></div><div class=mod-geo><details id=geo-accordion class="geo-accordion mt4"><summary class="pointer fw6 mb2 f4"><span class="arrow-toggle mr2 dn-ns">▸</span> Geographies</summary><details class=mb2><summary class="pointer fw6"><span class="arrow-toggle mr1">▸</span> Boroughs</summary><div class="flex flex-wrap items-center ml2 mb2"><a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/borough/Bronx/>Bronx</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/borough/Brooklyn/>Brooklyn</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/borough/Manhattan/>Manhattan</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/borough/Queens/>Queens</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/borough/Staten%20Island/>Staten Island</a></div></details><details class=mb2><summary class="pointer fw6"><span class="arrow-toggle mr1">▸</span> State Senate Districts</summary><div class="flex flex-wrap items-center ml2 mb2"><a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/1/>1</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/2/>2</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/3/>3</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/4/>4</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/5/>5</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/6/>6</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/7/>7</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/8/>8</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/9/>9</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/10/>10</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/11/>11</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/12/>12</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/13/>13</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/14/>14</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/15/>15</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/16/>16</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/17/>17</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/18/>18</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/19/>19</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/20/>20</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/21/>21</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/22/>22</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/23/>23</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/24/>24</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/25/>25</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/26/>26</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/27/>27</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/28/>28</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/29/>29</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/30/>30</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/31/>31</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/32/>32</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/33/>33</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/34/>34</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/35/>35</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/36/>36</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/37/>37</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/38/>38</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/39/>39</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/40/>40</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/41/>41</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/42/>42</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/43/>43</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/44/>44</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/45/>45</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/47/>47</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/48/>48</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/49/>49</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/51/>51</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/52/>52</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/53/>53</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/54/>54</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/55/>55</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/56/>56</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/57/>57</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/58/>58</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/59/>59</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/60/>60</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/61/>61</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/senate-district/62/>62</a></div></details><details class=mb2><summary class="pointer fw6"><span class="arrow-toggle mr1">▸</span> State Assembly Districts</summary><div class="flex flex-wrap items-center ml2 mb2"><a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/19/>19</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/22/>22</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/23/>23</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/24/>24</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/25/>25</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/26/>26</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/27/>27</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/28/>28</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/29/>29</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/30/>30</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/31/>31</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/32/>32</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/33/>33</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/34/>34</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/35/>35</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/36/>36</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/37/>37</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/38/>38</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/39/>39</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/40/>40</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/41/>41</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/42/>42</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/43/>43</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/44/>44</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/45/>45</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/46/>46</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/47/>47</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/48/>48</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/49/>49</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/50/>50</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/51/>51</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/52/>52</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/53/>53</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/54/>54</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/55/>55</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/56/>56</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/57/>57</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/58/>58</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/59/>59</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/60/>60</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/61/>61</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/62/>62</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/63/>63</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/64/>64</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/65/>65</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/66/>66</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/67/>67</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/68/>68</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/69/>69</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/70/>70</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/71/>71</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/72/>72</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/73/>73</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/74/>74</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/75/>75</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/76/>76</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/77/>77</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/78/>78</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/79/>79</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/80/>80</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/81/>81</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/82/>82</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/83/>83</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/84/>84</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/85/>85</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/86/>86</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/87/>87</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/88/>88</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/89/>89</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/92/>92</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/94/>94</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/96/>96</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/103/>103</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/105/>105</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/110/>110</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/125/>125</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/129/>129</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/137/>137</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/assembly-district/146/>146</a></div></details><details class=mb2><summary class="pointer fw6"><span class="arrow-toggle mr1">▸</span> City Council Districts</summary><div class="flex flex-wrap items-center ml2 mb2"><a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/1/>1</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/2/>2</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/3/>3</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/4/>4</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/5/>5</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/6/>6</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/7/>7</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/8/>8</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/9/>9</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/10/>10</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/11/>11</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/12/>12</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/13/>13</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/14/>14</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/15/>15</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/16/>16</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/17/>17</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/18/>18</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/19/>19</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/20/>20</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/21/>21</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/22/>22</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/23/>23</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/24/>24</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/25/>25</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/26/>26</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/27/>27</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/28/>28</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/29/>29</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/30/>30</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/31/>31</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/32/>32</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/33/>33</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/34/>34</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/35/>35</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/36/>36</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/37/>37</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/38/>38</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/39/>39</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/40/>40</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/41/>41</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/42/>42</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/43/>43</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/44/>44</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/45/>45</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/46/>46</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/47/>47</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/48/>48</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/49/>49</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/50/>50</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/council-district/51/>51</a></div></details><details class=mb2><summary class="pointer fw6"><span class="arrow-toggle mr1">▸</span> Police Precincts</summary><div class="flex flex-wrap items-center ml2 mb2"><a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/1/>1</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/5/>5</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/6/>6</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/7/>7</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/9/>9</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/10/>10</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/13/>13</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/14/>14</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/17/>17</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/18/>18</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/19/>19</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/20/>20</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/22/>22</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/23/>23</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/24/>24</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/25/>25</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/26/>26</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/28/>28</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/30/>30</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/32/>32</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/33/>33</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/34/>34</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/40/>40</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/41/>41</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/42/>42</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/43/>43</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/44/>44</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/45/>45</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/46/>46</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/47/>47</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/48/>48</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/49/>49</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/50/>50</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/52/>52</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/60/>60</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/62/>62</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/63/>63</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/66/>66</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/67/>67</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/68/>68</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/69/>69</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/70/>70</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/71/>71</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/72/>72</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/73/>73</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/75/>75</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/76/>76</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/77/>77</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/78/>78</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/79/>79</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/81/>81</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/83/>83</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/84/>84</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/88/>88</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/90/>90</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/94/>94</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/100/>100</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/101/>101</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/102/>102</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/103/>103</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/104/>104</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/105/>105</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/106/>106</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/107/>107</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/108/>108</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/109/>109</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/110/>110</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/111/>111</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/112/>112</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/114/>114</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/115/>115</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/116/>116</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/120/>120</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/121/>121</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/police-precinct/122/>122</a></div></details><details class=mb2><summary class="pointer fw6"><span class="arrow-toggle mr1">▸</span> Community Boards</summary><div class="mb1 ml2"><span class=fw6>Bronx</span>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/201/>1</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/202/>2</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/203/>3</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/204/>4</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/205/>5</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/206/>6</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/207/>7</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/208/>8</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/209/>9</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/210/>10</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/211/>11</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/212/>12</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/226/>26</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/227/>27</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/228/>28</a></div><div class="mb1 ml2"><span class=fw6>Brooklyn</span>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/301/>1</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/302/>2</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/303/>3</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/304/>4</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/305/>5</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/306/>6</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/307/>7</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/308/>8</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/309/>9</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/310/>10</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/311/>11</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/312/>12</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/313/>13</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/314/>14</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/315/>15</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/316/>16</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/317/>17</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/318/>18</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/355/>55</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/356/>56</a></div><div class="mb1 ml2"><span class=fw6>Manhattan</span>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/101/>1</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/102/>2</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/103/>3</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/104/>4</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/105/>5</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/106/>6</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/107/>7</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/108/>8</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/109/>9</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/110/>10</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/111/>11</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/112/>12</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/164/>64</a></div><div class="mb1 ml2"><span class=fw6>Queens</span>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/401/>1</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/402/>2</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/403/>3</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/404/>4</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/405/>5</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/406/>6</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/407/>7</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/408/>8</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/409/>9</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/410/>10</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/411/>11</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/412/>12</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/413/>13</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/414/>14</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/481/>81</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/482/>82</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/483/>83</a></div><div class="mb1 ml2"><span class=fw6>Staten Island</span>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/501/>1</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/502/>2</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/503/>3</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/community-board/595/>95</a></div></details><details class=mb2><summary class="pointer fw6"><span class="arrow-toggle mr1">▸</span> Neighborhoods</summary><div class="mb1 ml2"><span class=fw6>Bronx</span>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX1104/>Allerton</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0702/>Bedford Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0603/>Belmont</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX2791/>Bronx Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0903/>Castle Hill-Unionport</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0302/>Claremont Village-Claremont (East)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX1004/>Co-Op City</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0401/>Concourse-Concourse Village</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0391/>Crotona Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0303/>Crotona Park East</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX1202/>Eastchester-Edenwald-Baychester</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0503/>Fordham Heights</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0402/>Highbridge</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0201/>Hunts Point</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX1161/>Hutchinson Metro Center</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0801/>Kingsbridge Heights-Van Cortlandt Village</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0802/>Kingsbridge-Marble Hill</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0202/>Longwood</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0102/>Melrose</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX1102/>Morris Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0301/>Morrisania</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0101/>Mott Haven-Port Morris</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0403/>Mount Eden-Claremont (West)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0502/>Mount Hope</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0703/>Norwood</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0904/>Parkchester</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX2891/>Pelham Bay Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX1003/>Pelham Bay-Country Club-City Island</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX1103/>Pelham Gardens</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX1101/>Pelham Parkway-Van Nest</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0803/>Riverdale-Spuyten Duyvil</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0991/>Soundview Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0901/>Soundview-Bruckner-Bronx River</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0902/>Soundview-Clason Point</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX1002/>Throgs Neck-Schuylerville</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0602/>Tremont</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0701/>University Heights (North)-Fordham</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0501/>University Heights (South)-Morris Heights</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX2691/>Van Cortlandt Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX1203/>Wakefield-Woodlawn</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0601/>West Farms</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX1001/>Westchester Square</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX1201/>Williamsbridge-Olinville</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BX0491/>Yankee Stadium-Macombs Dam Park</a></div><div class="mb1 ml2"><span class=fw6>Brooklyn</span>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK5691/>Barren Island-Floyd Bennett Field</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1102/>Bath Beach</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1001/>Bay Ridge</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0302/>Bedford-Stuyvesant (East)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0301/>Bedford-Stuyvesant (West)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1101/>Bensonhurst</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1202/>Borough Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1303/>Brighton Beach</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0201/>Brooklyn Heights</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0261/>Brooklyn Navy Yard</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1602/>Brownsville</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0402/>Bushwick (East)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0401/>Bushwick (West)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1803/>Canarsie</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0601/>Carroll Gardens-Cobble Hill-Gowanus-Red Hook</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0204/>Clinton Hill</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1302/>Coney Island-Sea Gate</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0802/>Crown Heights (North)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0901/>Crown Heights (South)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0501/>Cypress Hills</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0202/>Downtown Brooklyn-Dumbo-Boerum Hill</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1002/>Dyker Heights</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1701/>East Flatbush-Erasmus</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1702/>East Flatbush-Farragut</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1704/>East Flatbush-Remsen Village</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1703/>East Flatbush-Rugby</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0502/>East New York (North)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0505/>East New York-City Line</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0503/>East New York-New Lots</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0104/>East Williamsburg</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1401/>Flatbush</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1402/>Flatbush (West)-Ditmas Park-Parkville</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1801/>Flatlands</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0203/>Fort Greene</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1061/>Fort Hamilton</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1501/>Gravesend (East)-Homecrest</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1301/>Gravesend (South)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1103/>Gravesend (West)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0101/>Greenpoint</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1203/>Kensington</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1502/>Madison</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1204/>Mapleton-Midwood (West)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1802/>Marine Park-Mill Basin-Bergen Beach</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1891/>Marine Park-Plumb Island</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1892/>Mcguire Fields</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1403/>Midwood</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1601/>Ocean Hill</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0602/>Park Slope</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0801/>Prospect Heights</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0902/>Prospect Lefferts Gardens-Wingate</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK5591/>Prospect Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1503/>Sheepshead Bay-Manhattan Beach-Gerritsen Beach</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK5693/>Shirley Chisholm State Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0103/>South Williamsburg</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0504/>Spring Creek-Starrett City</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0703/>Sunset Park (Central)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK1201/>Sunset Park (East)-Borough Park (West)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0702/>Sunset Park (West)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0102/>Williamsburg</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/BK0701/>Windsor Terrace-South Slope</a></div><div class="mb1 ml2"><span class=fw6>Manhattan</span>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN6491/>Central Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0401/>Chelsea-Hudson Yards</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0301/>Chinatown-Two Bridges</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN1102/>East Harlem (North)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN1101/>East Harlem (South)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0604/>East Midtown-Turtle Bay</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0303/>East Village</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0101/>Financial District-Battery Park City</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0602/>Gramercy</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0202/>Greenwich Village</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0903/>Hamilton Heights-Sugar Hill</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN1002/>Harlem (North)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN1001/>Harlem (South)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0402/>Hell'S Kitchen</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN1291/>Highbridge Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN1203/>Inwood</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN1292/>Inwood Hill Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0302/>Lower East Side</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0902/>Manhattanville-West Harlem</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0501/>Midtown South-Flatiron-Union Square</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0502/>Midtown-Times Square</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0901/>Morningside Heights</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0603/>Murray Hill-Kips Bay</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN1191/>Randall'S Island</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0201/>Soho-Little Italy-Hudson Square</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0601/>Stuyvesant Town-Peter Cooper Village</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0102/>Tribeca-Civic Center</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0661/>United Nations</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0802/>Upper East Side-Carnegie Hill</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0801/>Upper East Side-Lenox Hill-Roosevelt Island</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0803/>Upper East Side-Yorkville</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0702/>Upper West Side (Central)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0701/>Upper West Side-Lincoln Square</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0703/>Upper West Side-Manhattan Valley</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN1202/>Washington Heights (North)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN1201/>Washington Heights (South)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/MN0203/>West Village</a></div><div class="mb1 ml2"><span class=fw6>Queens</span>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1191/>Alley Pond Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0103/>Astoria (Central)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0104/>Astoria (East)-Woodside (North)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0101/>Astoria (North)-Ditmars-Steinway</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1101/>Auburndale</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1203/>Baisley Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0703/>Bay Terrace-Clearview</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1102/>Bayside</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1302/>Bellerose</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1403/>Breezy Point-Belle Harbor-Rockaway Park-Broad Channel</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0271/>Calvary & Mount Zion Cemeteries</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1304/>Cambria Heights</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0701/>College Point</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0402/>Corona</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0891/>Cunningham Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1103/>Douglaston-Little Neck</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0302/>East Elmhurst</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0705/>East Flushing</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0401/>Elmhurst</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1401/>Far Rockaway-Bayswater</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN8191/>Flushing Meadows-Corona Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0707/>Flushing-Willets Point</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0602/>Forest Hills</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN8291/>Forest Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0803/>Fresh Meadows-Utopia</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1301/>Glen Oaks-Floral Park-New Hyde Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0503/>Glendale</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0574/>Highland Park-Cypress Hills Cemeteries (North)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1206/>Hollis</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1003/>Howard Beach-Lindenwood</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0301/>Jackson Heights</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1201/>Jamaica</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0804/>Jamaica Estates-Holliswood</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0805/>Jamaica Hills-Briarwood</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN8381/>John F. Kennedy International Airport</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0901/>Kew Gardens</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0801/>Kew Gardens Hills</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1305/>Laurelton</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0201/>Long Island City-Hunters Point</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0501/>Maspeth</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0504/>Middle Village</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0572/>Middle Village Cemetery</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0704/>Murray Hill-Broadway Flushing</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0303/>North Corona</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0102/>Old Astoria-Hallets Point</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1002/>Ozone Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0904/>Ozone Park (North)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0802/>Pomonok-Electchester-Hillcrest</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1303/>Queens Village</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0706/>Queensboro Hill</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0105/>Queensbridge-Ravenswood-Dutch Kills</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0601/>Rego Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0902/>Richmond Hill</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0502/>Ridgewood</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1402/>Rockaway Beach-Arverne-Edgemere</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1307/>Rosedale</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1202/>South Jamaica</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1001/>South Ozone Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0903/>South Richmond Hill</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1091/>Spring Creek Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1204/>Springfield Gardens (North)-Rochdale Village</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1306/>Springfield Gardens (South)-Brookville</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN1205/>St. Albans</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0573/>St. John Cemetery</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0202/>Sunnyside</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0161/>Sunnyside Yards (North)</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0702/>Whitestone-Beechhurst</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0905/>Woodhaven</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/QN0203/>Woodside</a></div><div class="mb1 ml2"><span class=fw6>Staten Island</span>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI0304/>Annadale-Huguenot-Prince'S Bay-Woodrow</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI0303/>Arden Heights-Rossville</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI0201/>Grasmere-Arrochar-South Beach-Dongan Hills</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI9593/>Great Kills Park</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI0302/>Great Kills-Eltingville</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI0107/>Mariner'S Harbor-Arlington-Graniteville</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI9592/>Miller Field</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI0202/>New Dorp-Midland Beach</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI0204/>New Springville-Willowbrook-Bulls Head-Travis</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI0301/>Oakwood-Richmondtown</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI0106/>Port Richmond</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI0103/>Rosebank-Shore Acres-Park Hill</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI0101/>St. George-New Brighton</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI0203/>Todt Hill-Emerson Hill-Lighthouse Hill-Manor Heights</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI0102/>Tompkinsville-Stapleton-Clifton-Fox Hills</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI0305/>Tottenville-Charleston</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI0104/>West New Brighton-Silver Lake-Grymes Hill</a>
+<a class="bg-light-gray br2 pv05 ph1 ma1 link dim blue mb1 dib" href=/neighborhood/SI0105/>Westerleigh-Castleton Corners</a></div></details></details><script>document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll(".geo-accordion details").forEach(e=>{const t=e.querySelector(".arrow-toggle");t&&e.addEventListener("toggle",()=>{t.textContent=e.open?"▾":"▸"})});const e=document.getElementById("geo-accordion");e&&(window.innerWidth>=800?e.open=!0:e.open=!1)})</script></div><div class=mod-timeline><h2 class="mt4 mb2">Traffic Safety Timeline for New York City</h2><section id=timeline class=mr2><details class="tl-item mb3" data-year=2023 data-month=Dec><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-file-excel-fill mid-gray"></i>
+<span class="mid-gray fw3 f7" style=position:absolute;top:-.8em;right:-.3em;line-height:1;pointer-events:none>2</span></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>Left Turn Ignored Signal, Passenger Burned Alive</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>Steel met steel on 10th Avenue. A left turn ran the light. Fire tore through the wreck. In the front seat, a young woman died, burned and broken. The street glowed with flame and loss.</p><p class=mb3>A deadly crash unfolded at 10th Avenue and West 213th Street in Manhattan. Two vehicles collided after one made a left turn and disregarded a traffic signal. According to the police report, 'A left turn ignored the signal. Steel struck steel. Fire bloomed.' The front passenger, a 21-year-old woman, suffered fatal burns and died at the scene. The report lists 'Traffic Control Disregarded' as a contributing factor. No other contributing factors are noted for the drivers. The victim was a passenger and played no role in the crash. The police report does not specify if safety equipment was used.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-database mr2"></i>
+<span><a class="link black" href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>Motor Vehicle Collisions – CrashID 4685068</a>,
+NYC Open Data,
+Accessed 2025-06-05</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Dec><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-file-excel-fill mid-gray"></i></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>Unlicensed Teen Motorcyclist Killed at Speed</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>An unlicensed teen on a motorcycle slammed into an SUV on the Cross Bronx Expressway. He flew from the bike and died on the asphalt. His helmet stayed on. Three other vehicles kept moving. The crash left one dead and a city unchanged.</p><p class=mb3>An 18-year-old unlicensed male motorcyclist was killed after striking the left rear bumper of a Honda SUV on the Cross Bronx Expressway. According to the police report, 'An unlicensed 18-year-old on a motorcycle hit a Honda SUV at speed, flew from the bike, and died on the asphalt. His helmet stayed on. Three other vehicles kept going. His body did not.' The police report lists 'Unsafe Speed' as a contributing factor. The motorcyclist was ejected from his bike and suffered fatal injuries to his entire body. The data notes that his helmet remained on, but no helmet use is listed as a contributing factor. No injuries were reported for the occupants of the SUV or the other vehicles involved.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-database mr2"></i>
+<span><a class="link black" href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>Motor Vehicle Collisions – CrashID 4684769</a>,
+NYC Open Data,
+Accessed 2025-06-05</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Dec><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-file-excel-fill mid-gray"></i>
+<span class="mid-gray fw3 f7" style=position:absolute;top:-.8em;right:-.3em;line-height:1;pointer-events:none>2</span></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>Moped Swerves, Passenger Killed on Jamaica Avenue</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>A Fly Wing moped veered east on Jamaica Avenue. The unlicensed driver lost control. A 62-year-old man in the sidecar was thrown out. His head hit the pavement. He died at the scene. No other vehicle made contact.</p><p class=mb3>A deadly crash unfolded on Jamaica Avenue near 146th Street. According to the police report, a Fly Wing moped swerved east, reacting to an uninvolved vehicle. The moped driver was unlicensed. The sidecar passenger, a 62-year-old man, was ejected and suffered fatal head injuries. The report states, 'No helmet. No license. A 62-year-old man flew from the sidecar. His head struck pavement. He died in silence, chasing a vehicle that never touched him.' The contributing factor listed is 'Reaction to Uninvolved Vehicle.' The data notes the passenger wore no helmet, but this is mentioned only after the driver’s errors. No other vehicles made contact. The crash left one dead.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-database mr2"></i>
+<span><a class="link black" href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>Motor Vehicle Collisions – CrashID 4684466</a>,
+NYC Open Data,
+Accessed 2025-06-05</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Dec><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-file-excel-fill mid-gray"></i>
+<span class="mid-gray fw3 f7" style=position:absolute;top:-.8em;right:-.3em;line-height:1;pointer-events:none>2</span></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>Speeding Sedan Kills Young Pedestrian Midtown</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>A Ford sedan, moving too fast, struck a 22-year-old man on Avenue of the Americas. His body broke between parked SUVs. He died in the street, under cold city lights. Unsafe speed left no room for mercy. The city kept moving.</p><p class=mb3>A 22-year-old man was killed when a Ford sedan, traveling at unsafe speed, struck him on Avenue of the Americas near West 39th Street. According to the police report, the sedan hit the pedestrian as he crossed the road, pinning his body between parked SUVs. The crash left him dead at the scene. The report lists 'Unsafe Speed' as the contributing factor. The data shows the sedan was going straight ahead when it struck the man. No errors or contributing factors are listed for the victim beyond his location and action. The deadly impact and speed of the vehicle defined the outcome.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-database mr2"></i>
+<span><a class="link black" href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>Motor Vehicle Collisions – CrashID 4690315</a>,
+NYC Open Data,
+Accessed 2025-06-05</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Dec><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-file-excel-fill mid-gray"></i></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>Motorcyclist Dies After Losing Consciousness on Expressway</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>A man rode north on the West Shore Expressway. He lost consciousness. The Harley surged forward. He flew from the bike, helmeted. His body struck the ground. Head trauma. Internal bleeding. He died alone beneath the Staten Island sky.</p><p class=mb3>A 53-year-old man was killed while riding a Harley northbound on the West Shore Expressway. According to the police report, he lost consciousness and was ejected from the motorcycle. The report lists 'Illness' and 'Lost Consciousness' as contributing factors. The rider wore a helmet, but suffered fatal head trauma and internal injuries. No other vehicles or people were involved. The crash left one dead, a stark reminder of the dangers faced by those on two wheels.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-database mr2"></i>
+<span><a class="link black" href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>Motor Vehicle Collisions – CrashID 4684468</a>,
+NYC Open Data,
+Accessed 2025-06-05</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Nov><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-receipt w2"></i></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>Long Island City Bike Lanes: Safer Streets, Gaps Remain</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>City leaders cut ribbon on new protected bike lanes in Long Island City. Concrete curbs and daylighting shield cyclists from cars. Gaps persist at key intersections and bridge connections. Advocates demand more links and stronger barriers. Progress, but not enough.</p><p class=mb3>On November 30, 2023, city officials unveiled new protected bike lanes along 11th Street, 44th Drive, and Jackson Avenue in Long Island City. The Department of Transportation, led by Commissioner Ydanis Rodriguez, called the lanes 'life-saving' and said they fill a critical gap, connecting cyclists to the Queensboro and Pulaski bridges. The project follows years of advocacy, including a 2019 push by then-Council Member Jimmy Van Bramer. Laura Shepard of Transportation Alternatives praised the concrete curbs and daylighting but warned that gaps remain—especially at confusing intersections and near truck routes. Shepard urged DOT to add more physical barriers and expand the network, noting, 'It’s exciting, but we still need a lot more.' The new lanes mark progress, but the area’s vulnerable road users still face danger from incomplete connections and blocked paths.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-newspaper mr2"></i>
+<span><a class="link black" href=https://nyc.streetsblog.org/2023/11/30/eyes-on-the-street-lic-bike-lanes-a-good-start-but-more-needed>Eyes on the Street: Long Island City Bike Lanes Are a Good Start — But More Needed</a>,
+Streetsblog NYC,
+Published 2023-11-30</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Nov><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-file-excel-fill mid-gray"></i></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>Infiniti Sedan Kills Toddler on College Point</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>A three-year-old boy died on College Point Boulevard. The child crossed outside the crosswalk. A southbound Infiniti sedan pulled from parking. Tinted windows. The car struck him head-on. His skull crushed on the asphalt. He died at the scene.</p><p class=mb3>A three-year-old boy was killed on College Point Boulevard when a southbound Infiniti sedan, pulling out from parking, struck him head-on. According to the police report, the sedan had tinted windows and the driver held only a permit. The child crossed outside the crosswalk. The impact crushed his skull. The report lists 'Tinted Windows' as a contributing factor. The driver’s permit status is noted. No other injuries were reported. The boy died at the scene.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-database mr2"></i>
+<span><a class="link black" href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>Motor Vehicle Collisions – CrashID 4683366</a>,
+NYC Open Data,
+Accessed 2025-06-05</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Nov><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-receipt w2"></i></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>Western Queens Street Safety Plan: Lawmakers Demand Action by 2029</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>Four lawmakers unveiled a sweeping street safety plan for Western Queens. They demand protected bike lanes, more pedestrian space, daylighting, and traffic calming. The plan sets deadlines and calls for policy changes to curb deaths and injuries on dangerous streets.</p><p class=mb3>On November 28, 2023, four city and state lawmakers released the Western Queens Street Safety Plan. The plan, not yet in formal bill stage, covers neighborhoods like Long Island City, Astoria, Elmhurst, and Jackson Heights. It calls for a 'protected bike lane network, more pedestrian space, a ban on parking near intersections, more space for micromobility users, and policy changes to improve safety.' Lawmakers demand these projects by 2029, including opening the Queensboro Bridge’s south outer roadway to pedestrians, redesigning 31st Avenue, and universal daylighting. The plan also pushes for automated enforcement, lower speed limits, higher fees for heavy vehicles, and bus lanes on every major route. The lawmakers’ statement reads: 'Even one death is too many, and these 13 tragedies have had a major impact on Western Queens residents.' Their plan aims to hold officials accountable and make streets safer for pedestrians and cyclists.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-newspaper mr2"></i>
+<span><a class="link black" href=https://nyc.streetsblog.org/2023/11/28/pols-detail-road-map-for-safe-streets-in-western-queens>Pols Detail ‘Road Map’ For Safe Streets in Western Queens</a>,
+Streetsblog NYC,
+Published 2023-11-28</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Nov><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-file-excel-fill mid-gray"></i></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>Moped Rider Killed in Head-On Taxi Crash</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>A moped and taxi slammed head-on on Northern Boulevard. Metal shrieked. The 59-year-old moped rider, helmeted, died from massive facial injuries. The street fell silent. Inexperience and improper lane use drove the fatal impact.</p><p class=mb3>A deadly crash unfolded on Northern Boulevard near 29th Street in Queens. A moped and a taxi collided head-on. The 59-year-old moped rider, wearing a helmet, was killed by severe facial injuries. According to the police report, 'Inexperience steered the crash.' The report lists 'Driver Inexperience' and 'Passing or Lane Usage Improper' as contributing factors. The moped and taxi both suffered front-end damage. No injuries to the taxi driver were reported. The crash highlights the lethal consequences when driver errors—specifically inexperience and improper lane use—combine on city streets.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-database mr2"></i>
+<span><a class="link black" href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>Motor Vehicle Collisions – CrashID 4682752</a>,
+NYC Open Data,
+Accessed 2025-06-05</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Nov><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-file-excel-fill mid-gray"></i></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>SUV Strikes Pedestrian Head-On on Bruckner</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>A Lexus SUV hit a 36-year-old man head-on on Bruckner Expressway. The man died at the scene. The driver kept straight. The road stayed quiet. Blood marked the asphalt. The night swallowed the sound.</p><p class=mb3>A 36-year-old pedestrian was killed when an eastbound Lexus SUV struck him head-on on Bruckner Expressway. According to the police report, the man was in the roadway, not at an intersection, when the SUV hit him with its center front end. The victim suffered severe lacerations and died at the scene. The report lists the contributing factors as 'Unspecified.' The driver was licensed and continued straight ahead before the crash. No driver errors are specified in the data. The crash left the road silent and the victim alone in the dark.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-database mr2"></i>
+<span><a class="link black" href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>Motor Vehicle Collisions – CrashID 4683234</a>,
+NYC Open Data,
+Accessed 2025-06-05</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Nov><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-file-excel-fill mid-gray"></i></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>Dump Truck Crushes Elderly Woman Crossing Avenue P</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>A dump truck rolled down Avenue P. A 77-year-old woman crossed at East 19th. The truck’s front end struck her. She died at the scene. The driver kept going straight. The truck showed no damage. The street stayed silent.</p><p class=mb3>A 77-year-old woman was killed at the corner of Avenue P and East 19th Street in Brooklyn. According to the police report, a dump truck rolled east and struck her with its front end as she crossed the intersection. She suffered fatal crush injuries and died at the scene. The truck showed no damage. The driver continued straight after the crash. The police report lists the contributing factors as 'Unspecified.' No driver errors were detailed in the data. The victim was a pedestrian at the intersection. No mention of helmet or signal use appears in the report.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-database mr2"></i>
+<span><a class="link black" href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>Motor Vehicle Collisions – CrashID 4683230</a>,
+NYC Open Data,
+Accessed 2025-06-05</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Nov><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-file-excel-fill mid-gray"></i></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>Sedan Slams Moped From Behind On Fox Street</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>A sedan struck a moped from behind on Fox Street near Intervale Avenue. The 23-year-old moped rider was thrown to the pavement, bleeding and unconscious. The sedan’s front end crumpled. The street held the rider’s body as daylight faded.</p><p class=mb3>A deadly crash unfolded on Fox Street near Intervale Avenue. According to the police report, a sedan traveling south struck a moped from behind. The 23-year-old moped rider was ejected and landed on the pavement, suffering severe bleeding and losing consciousness. He died from his injuries. The sedan’s front end was crushed in the impact. Police cited 'Unsafe Speed' and 'Traffic Control Disregarded' as contributing factors. The report notes the moped rider was not wearing a helmet, but only after listing the driver’s errors. The crash highlights the lethal consequences when drivers ignore speed limits and traffic controls.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-database mr2"></i>
+<span><a class="link black" href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>Motor Vehicle Collisions – CrashID 4683237</a>,
+NYC Open Data,
+Accessed 2025-06-05</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Nov><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-file-excel-fill mid-gray"></i>
+<span class="mid-gray fw3 f7" style=position:absolute;top:-.8em;right:-.3em;line-height:1;pointer-events:none>4</span></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>SUV Veers Off Whitestone, Strikes Pedestrians</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>A GMC SUV left Whitestone Expressway near 20th Avenue. The driver, 71, lost consciousness and died. His passenger, 68, was crushed. Two pedestrians, 23 and 66, were struck off-road. The crash left bodies broken. The road bore the scars.</p><p class=mb3>A GMC SUV traveling north on Whitestone Expressway near 20th Avenue veered off course. According to the police report, the 71-year-old driver lost consciousness and died at the scene. His 68-year-old passenger suffered crush injuries. Two pedestrians, ages 23 and 66, were struck off the roadway and injured. The police report lists 'Lost Consciousness' as the contributing factor in the crash. The SUV’s right front bumper took the impact. No other driver errors are noted in the report. The pedestrians were not in the roadway when struck. The crash left four people hurt or dead, all caught in the path of a vehicle out of control.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-database mr2"></i>
+<span><a class="link black" href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>Motor Vehicle Collisions – CrashID 4682168</a>,
+NYC Open Data,
+Accessed 2025-06-05</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Nov><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-file-excel-fill mid-gray"></i></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>SUV Slams Truck, Elderly Passenger Killed</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>A Jeep rear-ended a diesel truck on Atlantic Avenue. The SUV’s front crumpled. The truck barely moved. An 88-year-old woman, belted in the front seat, died inside the wreck. She never made it out. Impact was sudden. Death was total.</p><p class=mb3>A Jeep SUV struck the rear of a diesel tractor truck on Atlantic Avenue near Clinton Avenue in Brooklyn. According to the police report, 'A Jeep rear-ended a diesel truck. The SUV’s front folded. The truck barely moved. An 88-year-old woman, belted in the front seat, died. Her body shattered inside the car. She never got out.' The crash killed the elderly front-seat passenger. The report lists 'Following Too Closely' as a contributing factor. The passenger was wearing a lap belt and harness. No driver errors by the truck operator are listed. The force of the collision left the SUV destroyed at the front, while the truck sustained rear-end damage but remained largely unmoved.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-database mr2"></i>
+<span><a class="link black" href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>Motor Vehicle Collisions – CrashID 4681770</a>,
+NYC Open Data,
+Accessed 2025-06-05</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Nov><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-file-excel-fill mid-gray"></i></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>SUV Turns, Strikes Pedestrian at Dawn</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>A Subaru turned right at Bay Parkway and 79th. The bumper hit a man’s head as he crossed. Blood pooled on the cold street. He died before sunrise. The street was empty. The city kept moving.</p><p class=mb3>A 56-year-old man was killed at the corner of Bay Parkway and 79th Street in Brooklyn. According to the police report, a Subaru SUV turned right at 6:03 a.m. and struck the pedestrian in the head with its bumper. The man was crossing against the signal. He died at the scene. The report lists the contributing factors as 'Unspecified.' No driver errors such as failure to yield or distraction are noted in the data. The impact was to the right front bumper of the vehicle. The crash left blood on the pavement before dawn.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-database mr2"></i>
+<span><a class="link black" href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>Motor Vehicle Collisions – CrashID 4681712</a>,
+NYC Open Data,
+Accessed 2025-06-05</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Nov><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-receipt w2"></i></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>Berry Street Bike Boulevard: Model for Low-Traffic Streets</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>Berry Street in Brooklyn is now a two-way bike boulevard. The city flipped traffic, painted intersections, and built barriers. Cars are fewer. Pedestrians and cyclists move safer. Residents see more space. Some confusion remains. Advocates want more streets like this.</p><p class=mb3>On November 21, 2023, the Department of Transportation (DOT) completed a permanent redesign of Berry Street in north Brooklyn. The project, described as a 'model for other streets,' included flipping one-way traffic, coral paint at intersections, curb extensions, and barriers to keep drivers out. The redesign faced delays from supply chain issues and local opposition. Brent Bovenzi, a volunteer with the North Brooklyn Open Streets Community Coalition, praised the changes, saying, 'Ultimately all of those physical things are what every local street in this city should have.' Residents like David Burgos noted, 'It did lower the traffic.' The street now has two-way bike markings, lower speed limits, and expanded pedestrian space. Advocates urge further improvements and expansion. DOT will monitor and adjust as needed.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-newspaper mr2"></i>
+<span><a class="link black" href=https://nyc.streetsblog.org/2023/11/21/eyes-on-the-street-berry-street-bike-boulevard-is-a-model-for-low-traffic-streets>EYES ON THE STREET: Berry Street Bike Boulevard Is a Model for Low-Traffic Streets</a>,
+Streetsblog NYC,
+Published 2023-11-21</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Nov><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-receipt w2"></i></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>Victim’s Dad Statement: Streetsblog Changed My Perspective Forever</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>A father mourns his daughter, killed by a reckless driver. He credits Streetsblog for exposing the truth. The site demands driver accountability and safer streets. His loss is not isolated. It is part of a deadly pattern. He urges action for all.</p><p class=mb3>On November 21, 2023, Hsi-Pei Liao issued a public statement marking the World Day of Remembrance for the Victims of Traffic Violence. Liao’s daughter, Allison, was killed in 2013 by a reckless driver while walking with her grandmother. The matter highlights, in Liao’s words, 'Streetsblog opened my eyes to a different way of looking at our streets.' He credits Streetsblog for exposing the city’s failure to protect children and for demanding driver accountability. Liao urges support for Streetsblog’s mission to transform city streets into safer spaces for everyone. This advocacy statement underscores the need for media that centers victims and pushes for systemic change.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-newspaper mr2"></i>
+<span><a class="link black" href=https://nyc.streetsblog.org/2023/11/21/victims-dad-streetsblog-changed-my-perspective-forever>Victim’s Dad: ‘Streetsblog Changed My Perspective Forever’</a>,
+Streetsblog NYC,
+Published 2023-11-21</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Nov><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-file-excel-fill mid-gray"></i></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>Head-On Crash Kills Young Bronx Driver</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>A sedan slammed head-on into an SUV on Claremont Parkway. The Hyundai’s front crumpled. The 26-year-old woman behind the wheel died alone. No passengers. No escape. The SUV showed no damage. Night fell heavy on the Bronx.</p><p class=mb3>A 26-year-old woman driving a 2012 Hyundai sedan struck an SUV head-on near 495 Claremont Parkway in the Bronx. According to the police report, her car crumpled at the front. She was the only occupant and died at the scene. The SUV sustained no damage and had no reported injuries. The report lists no specific driver errors or contributing factors. The woman was not wearing a seatbelt, as noted in the data, but no other factors are cited. The crash left one dead and highlighted the violence of head-on impacts on city streets.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-database mr2"></i>
+<span><a class="link black" href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>Motor Vehicle Collisions – CrashID 4680996</a>,
+NYC Open Data,
+Accessed 2025-06-05</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Nov><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-file-excel-fill mid-gray"></i></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>Driver Slumps, Crashes Into Parked Sedan</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>A Hyundai drifted down 164 Street. The driver, 66, lost consciousness. His car struck a parked Honda. His chest hit the belt. The street went silent. He died at the scene. No one else was hurt.</p><p class=mb3>A 66-year-old man driving a Hyundai south on 164 Street lost consciousness at the wheel. According to the police report, his car drifted forward and struck a parked Honda sedan. The impact crushed his chest against the seatbelt. The report lists 'Lost Consciousness' as the contributing factor. The driver was killed in the crash. No other injuries were reported. The parked Honda was unoccupied at the time. The police report does not list any other contributing factors or mention helmet or signal use.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-database mr2"></i>
+<span><a class="link black" href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>Motor Vehicle Collisions – CrashID 4680918</a>,
+NYC Open Data,
+Accessed 2025-06-05</span></li></ul></div></details><details class="tl-item mb3" data-year=2023 data-month=Nov><summary class="pv2 br2 dim pointer flex items-start relative" style=list-style:none><div class="flex items-start"><div class="w2 tl pr2 f4 fw5"><span style=position:relative;display:inline-block><i class="bi bi-file-excel-fill mid-gray"></i>
+<span class="mid-gray fw3 f7" style=position:absolute;top:-.8em;right:-.3em;line-height:1;pointer-events:none>3</span></span></div><div class="flex items-center flex-auto w-100 pr4"><div class="f4 fw3 lh-title z-5"><span class=bg-white-50>Alcohol-Fueled Crash Ejects Young Woman</span></div></div><span style=position:absolute;right:.75rem;bottom:.5rem class="arrow-toggle f4">▸</span></summary><div class="pa3 lh-copy"><p class=mb3>Metal screamed on the Long Island Expressway. A sedan merged east. A 23-year-old woman flew from the back seat and died. Her friend, 22, crushed in front, survived. Police found alcohol involved. The road was unforgiving. The night ended in blood.</p><p class=mb3>A deadly crash tore through the Long Island Expressway at 4:29 a.m. A sedan merged eastbound. According to the police report, 'A 23-year-old woman, unbelted in the back, flew from the car and died. Her friend, 22, crushed in the front seat, lived. Alcohol was involved.' The crash involved a sedan and two SUVs, all traveling east. The report lists 'Alcohol Involvement' as a contributing factor. No other driver errors are specified. The 23-year-old woman was ejected and killed. The 22-year-old front passenger suffered crush injuries but survived. The police report does not list helmet or signal use as factors. The toll: one life lost, another scarred, and a road marked by reckless speed and alcohol.</p><hr class=mv3><ul class="list pl0 ma0 w-100"><li class="flex items-start mb2"><i class="bi bi-database mr2"></i>
+<span><a class="link black" href=https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95>Motor Vehicle Collisions – CrashID 4681105</a>,
+NYC Open Data,
+Accessed 2025-06-05</span></li></ul></div></details><nav class="tr mt4"><a class=pagination__next href=/page/27/>Next</a></nav></section></div></div><script>document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll("details.citation-details").forEach(e=>{const t=e.querySelector(".arrow-toggle");t&&e.addEventListener("toggle",()=>{t.textContent=e.open?"▾":"▸"})})})</script></main></div></body><footer class="pv4 ph3 ph5-m ph6-l mid-gray"><small class="f6 db tc">© 2025 Crash Count. All rights reserved.</small></footer><script src=/js/menu.js></script><script src=https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js></script><script src="/js/infinite.js?v=1749138527"></script><script src=https://unpkg.com/@turf/turf@6.5.0/turf.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js></script><script src=/js/find.js async></script></html>
