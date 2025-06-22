@@ -1,0 +1,1 @@
+{"version": 1, "layers": {"incidents": {"source": "mapbox://tileset-source/crashcount/crashcount-incidents-src", "minzoom": 0, "maxzoom": 14}}}
