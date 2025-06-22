@@ -1,27 +1,22 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const toggleBtn = document.getElementById('menuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const hamburgerIcon = document.getElementById('hamburgerIcon');
-    const closeIcon = document.getElementById('closeIcon');
-  
-    if (toggleBtn && mobileMenu) {
-      // Toggle mobile overlay and icon swap on click
-      toggleBtn.addEventListener('click', function() {
-        mobileMenu.classList.toggle('dn');
-        hamburgerIcon.classList.toggle('dn');
-        closeIcon.classList.toggle('dn');
-      });
-      
-      // Hide mobile overlay when a menu link is clicked
-      mobileMenu.querySelectorAll('a').forEach(function(link) {
-        link.addEventListener('click', function() {
-          mobileMenu.classList.add('dn');
-          hamburgerIcon.classList.remove('dn');
-          closeIcon.classList.add('dn');
-          // clear any open autocomplete
-          const suggMobile = document.getElementById('suggestions-mobile');
-          if (suggMobile) suggMobile.innerHTML = '';
-        });
-      });
+// desktop-menu.js  – adds a small delay before hiding top‑nav sub‑menus
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.relative').forEach(parent => {
+    const menu = parent.querySelector('.child-menu');
+    if (!menu) return;
+
+    let hideTimer;
+
+    function show() {
+      clearTimeout(hideTimer);
+      menu.style.display = 'block';
     }
+    function hide() {
+      hideTimer = setTimeout(() => (menu.style.display = 'none'), 200);
+    }
+
+    parent.addEventListener('mouseenter', show);
+    parent.addEventListener('mouseleave', hide);
+    menu.addEventListener('mouseenter', show);
+    menu.addEventListener('mouseleave', hide);
   });
+});
