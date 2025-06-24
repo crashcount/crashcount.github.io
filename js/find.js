@@ -193,7 +193,7 @@
     // Live type‑ahead -------------------------------------------------------
     const suggEl = document.getElementById('suggestions');
     const showSuggestions = debounce(async q => {
-      if (q.length < 3) {
+      if (q.length < 2) {
         suggEl.innerHTML = '';
         return;
       }
@@ -212,7 +212,7 @@
       } catch {
         suggEl.innerHTML = '';
       }
-    }, 180);    // 180 ms debounce
+    }, 120);    // 120 ms debounce
 
     if (input) {
       input.addEventListener('input', e => showSuggestions(e.target.value));
@@ -249,7 +249,7 @@
     const mSugg  = document.getElementById('suggestions-mobile');
 
     const showSuggestionsMobile = debounce(async q => {
-      if (q.length < 3) { mSugg.innerHTML = ''; return; }
+      if (q.length < 2) { mSugg.innerHTML = ''; return; }
       const token = ++lastSuggestToken;
       try {
         const feats = await geocodeSuggest(q);
@@ -258,7 +258,7 @@
           `<li data-label="${encodeURIComponent(f.properties.label)}"
                class="suggest-item" tabindex="-1">${f.properties.label}</li>`).join('');
       } catch { mSugg.innerHTML = ''; }
-    }, 180);
+    }, 120);
 
     if (mForm) mForm.addEventListener('submit', lookup);
     if (mInput){
