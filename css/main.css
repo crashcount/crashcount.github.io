@@ -369,3 +369,6 @@ details[open] .arrow-toggle {
   .citation-details[open] summary { cursor: default; pointer-events: none; }
   .citation-details summary .arrow-toggle { display: none; }
 }
+
+/* Contact list spacing */
+.rep-contact + .rep-contact { margin-top: 1rem; }
