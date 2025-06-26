@@ -285,12 +285,14 @@ details[open] .arrow-toggle {
     grid-template-areas:
       "crash    content"
       "contact  content"
+      "contact-parent  content"
       "overlap  content"
       "timeline content";
   }
 
   .mod-crash     { grid-area: crash; }
   .mod-contact   { grid-area: contact; }
+  .mod-contact-parent   { grid-area: contact-parent; }
   .mod-article   { grid-area: content; }
   .mod-overlap   { grid-area: overlap; }
   .mod-timeline  { grid-area: timeline; }

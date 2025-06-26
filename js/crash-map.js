@@ -101,7 +101,36 @@
         layout: { visibility: 'visible' }
       });
 
+      // -----------------------------------------------------------------------
+      // Popup on incident hover
+      // -----------------------------------------------------------------------
+      const incPopup = new window.mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        maxWidth: '280px'
+      });
 
+      map.on('mouseenter', 'incidents', e => {
+        map.getCanvas().style.cursor = 'pointer';
+        if (!e.features.length) return;
+        const props = e.features[0].properties || {};
+
+        const title     = props.title     || 'Traffic Collision';
+        const summary   = props.summary   || '';
+        // explainer removed for now
+
+        const html = `
+          <div style="font-size:12px;line-height:1.4;max-width:260px">
+            <strong>${title}</strong><br>
+            ${summary}
+          </div>`;
+        incPopup.setLngLat(e.lngLat).setHTML(html).addTo(map);
+      });
+
+      map.on('mouseleave', 'incidents', () => {
+        map.getCanvas().style.cursor = '';
+        incPopup.remove();
+      });
 
       // ---- DEBUG ------------------------------------------------------------
       console.log("[crash‑map] geoType, geoId:", geoType, geoId);
