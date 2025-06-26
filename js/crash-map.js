@@ -117,11 +117,19 @@
 
         const title     = props.title     || 'Traffic Collision';
         const summary   = props.summary   || '';
+        // Format crash_date in the browser's locale (e.g. “Jan 1, 2025” in US, “1 Jan 2025” in EU)
+        const dateStr = props.crash_date
+          ? new Date(props.crash_date).toLocaleDateString(undefined, {
+              year:  'numeric',
+              month: 'short',
+              day:   'numeric'
+            })
+          : '';
         // explainer removed for now
 
         const html = `
           <div style="font-size:12px;line-height:1.4;max-width:260px">
-            <strong>${title}</strong><br>
+            <strong>${dateStr} — ${title}</strong><br>
             ${summary}
           </div>`;
         incPopup.setLngLat(e.lngLat).setHTML(html).addTo(map);
@@ -140,6 +148,10 @@
         serious_injuries: ['>=', ['get', 'severity'], 4],
         deaths: ['==', ['get', 'severity'], 5],
       };
+      // Show crashes on or after 2022‑01‑01 only
+      const MIN_DATE   = '2022-01-01';
+      const dateFilter = ['>=', ['get', 'crash_date'], MIN_DATE];
+
       let clipGeom = null;    // geometry of the selected district for clipping
 
       map.once('idle', () => {
@@ -158,7 +170,8 @@
 
       function applySeverity(level) {
         const sev = severityFilters[level] || true;
-        map.setFilter('incidents', sev === true ? null : sev);
+        const filt = sev === true ? dateFilter : ['all', dateFilter, sev];
+        map.setFilter('incidents', filt);
       }
 
       Object.keys(GEO_CFG).forEach(layer => {
