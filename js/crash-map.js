@@ -79,6 +79,7 @@
         type: 'circle',
         source: 'incidents',
         'source-layer': 'incidents',
+        minzoom: 11,
         paint: {
           // radius grows with severity
           'circle-radius': [
@@ -95,10 +96,33 @@
             '#666', // 1‑3  → grey
             4, '#ff9800', // 4  → orange
             5, '#ff1744'  // 5  → red
-          ],
-          'circle-opacity': 0.85
+          ]
         },
         layout: { visibility: 'visible' }
+      });
+
+      map.addLayer({
+        id: 'incidents-hi',
+        type: 'circle',
+        source: 'incidents',
+        'source-layer': 'incidents',
+        maxzoom: 11,
+        filter: ['>=', ['to-number', ['get', 'severity']], 4],
+        paint: {
+          'circle-radius': [
+            'step',
+            ['get', 'severity'],
+            4,   // sev 4
+            5, 6 // sev 5
+          ],
+          'circle-color': [
+            'step',
+            ['get', 'severity'],
+            '#ff9800', // 4
+            5, '#ff1744'
+          ],
+          'circle-opacity': 0.85
+        }
       });
 
       // -----------------------------------------------------------------------
@@ -110,44 +134,36 @@
         maxWidth: '280px'
       });
 
-      map.on('mouseenter', 'incidents', e => {
-        map.getCanvas().style.cursor = 'pointer';
-        if (!e.features.length) return;
-        const props = e.features[0].properties || {};
+      ['incidents', 'incidents-hi'].forEach(layer => {
+        map.on('mouseenter', layer, e => {
+          map.getCanvas().style.cursor = 'pointer';
+          if (!e.features.length) return;
+          const props = e.features[0].properties || {};
 
-        const title     = props.title     || 'Traffic Collision';
-        const summary   = props.summary   || '';
-        // Format crash_date in the browser's locale (e.g. “Jan 1, 2025” in US, “1 Jan 2025” in EU)
-        const dateStr = props.crash_date
-          ? new Date(props.crash_date).toLocaleDateString(undefined, {
-              year:  'numeric',
-              month: 'short',
-              day:   'numeric'
-            })
-          : '';
-        // explainer removed for now
+          const title   = props.title   || 'Traffic Collision';
+          const summary = props.summary || '';
+          const dateStr = props.crash_date
+            ? new Date(props.crash_date).toLocaleDateString(undefined,
+                {year:'numeric', month:'short', day:'numeric'})
+            : '';
 
-        const html = `
-          <div style="font-size:12px;line-height:1.4;max-width:260px">
-            <strong>${dateStr} — ${title}</strong><br>
-            ${summary}
-          </div>`;
-        incPopup.setLngLat(e.lngLat).setHTML(html).addTo(map);
-      });
-
-      map.on('mouseleave', 'incidents', () => {
-        map.getCanvas().style.cursor = '';
-        incPopup.remove();
+          const html = `
+            <div style="font-size:12px;line-height:1.4;max-width:260px">
+              <strong>${dateStr} — ${title}</strong><br>${summary}
+            </div>`;
+          incPopup.setLngLat(e.lngLat).setHTML(html).addTo(map);
+        });
+        map.on('mouseleave', layer, () => {
+          map.getCanvas().style.cursor = '';
+          incPopup.remove();
+        });
       });
 
       // ---- DEBUG ------------------------------------------------------------
       console.log("[crash‑map] geoType, geoId:", geoType, geoId);
 
-      const severityFilters = {
-        total: true,
-        serious_injuries: ['>=', ['get', 'severity'], 4],
-        deaths: ['==', ['get', 'severity'], 5],
-      };
+      // Removed severityFilters, applySeverity, and severityChange event listener per instructions.
+
       // Show crashes on or after 2022‑01‑01 only
       const MIN_DATE   = '2022-01-01';
       const dateFilter = ['>=', ['get', 'crash_date'], MIN_DATE];
@@ -166,13 +182,8 @@
 
       // If this page is scoped to a single geoType (e.g. "council"),
       // show only that boundary layer; others start hidden.
-      const visibleGeoType = geoType && GEO_CFG[geoType] ? geoType : null;
-
-      function applySeverity(level) {
-        const sev = severityFilters[level] || true;
-        const filt = sev === true ? dateFilter : ['all', dateFilter, sev];
-        map.setFilter('incidents', filt);
-      }
+      // Default to showing City Council districts when no specific geo type is requested
+      const visibleGeoType = (geoType && GEO_CFG[geoType]) ? geoType : 'council';
 
       Object.keys(GEO_CFG).forEach(layer => {
         map.addSource(layer, { type: 'vector', url: `mapbox://crashcount.${layer}` });
@@ -221,7 +232,7 @@
             filter
           });
           if (feats.length) {
-            applySeverity(initial);   // show all incidents, just filtered by severity
+            // applySeverity(initial);   // Removed per instructions
 
             // fit map to district bounds
             if (typeof turf !== 'undefined') {
@@ -232,12 +243,12 @@
         });
       } else {
         // no specific geography → just severity filter globally
-        applySeverity(initial);
+        // applySeverity(initial);  // Removed per instructions
       }
 
       // Make sure incidents layer stays on top of boundaries
       map.moveLayer('incidents');
-      document.addEventListener('severityChange', e => applySeverity(e.detail));
+      // document.addEventListener('severityChange', e => applySeverity(e.detail)); // Removed per instructions
       console.log('[crash‑map] load handler complete');
     });
     map.on('error', e => console.error('[crash‑map] mapbox error:', e.error || e));
