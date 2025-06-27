@@ -159,14 +159,30 @@
         });
       });
 
-      // ---- DEBUG ------------------------------------------------------------
-      console.log("[crash‑map] geoType, geoId:", geoType, geoId);
+      // -----------------------------------------------------------------------
+      // Severity filter (hooked to severity-selector.js)
+      // -----------------------------------------------------------------------
+      const severityFilters = {
+        total:  true,                                    // no filter
+        serious_injuries: ['>=', ['to-number', ['get', 'severity']], 4],
+        deaths: ['==', ['to-number', ['get', 'severity']], 5]
+      };
 
-      // Removed severityFilters, applySeverity, and severityChange event listener per instructions.
-
-      // Show crashes on or after 2022‑01‑01 only
       const MIN_DATE   = '2022-01-01';
       const dateFilter = ['>=', ['get', 'crash_date'], MIN_DATE];
+
+      function applySeverity(level){
+        const sev = severityFilters[level] || true;
+        const filt = (sev === true) ? dateFilter
+                                    : ['all', dateFilter, sev];
+        // apply to both point layers
+        ['incidents', 'incidents-hi'].forEach(layerId => {
+          if (map.getLayer(layerId)) map.setFilter(layerId, filt);
+        });
+      }
+
+      // ---- DEBUG ------------------------------------------------------------
+      console.log("[crash‑map] geoType, geoId:", geoType, geoId);
 
       let clipGeom = null;    // geometry of the selected district for clipping
 
@@ -232,8 +248,7 @@
             filter
           });
           if (feats.length) {
-            // applySeverity(initial);   // Removed per instructions
-
+            applySeverity(initial);
             // fit map to district bounds
             if (typeof turf !== 'undefined') {
               const b = turf.bbox(feats[0]);
@@ -243,12 +258,12 @@
         });
       } else {
         // no specific geography → just severity filter globally
-        // applySeverity(initial);  // Removed per instructions
+        applySeverity(initial);
       }
 
       // Make sure incidents layer stays on top of boundaries
       map.moveLayer('incidents');
-      // document.addEventListener('severityChange', e => applySeverity(e.detail)); // Removed per instructions
+      document.addEventListener('severityChange', e => applySeverity(e.detail));
       console.log('[crash‑map] load handler complete');
     });
     map.on('error', e => console.error('[crash‑map] mapbox error:', e.error || e));
