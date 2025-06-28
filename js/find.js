@@ -38,7 +38,7 @@
   ];
 
 
-  // --- JSON‑P fallback for GeoSearch (v2 lacks CORS) ------------------------
+  // --- JSON‑P fallback (legacy browsers) ------------------------
   function jsonp(url) {
     return new Promise((resolve, reject) => {
       const cb = `jsonp_cb_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
@@ -69,8 +69,8 @@
       `https://geosearch.planninglabs.nyc/v2/search?text=${encodeURIComponent(
         query
       )}&size=1`;
-    const { features } = await jsonp(url);
-    if (!features?.length) throw new Error('Address not found');
+    const { features } = await fetchGeo(url);
+    if (!features || !features.length) throw new Error('Address not found');
     const [lon, lat] = features[0].geometry.coordinates;
     return { lat, lon };
   }
@@ -81,7 +81,7 @@
       `https://geosearch.planninglabs.nyc/v2/autocomplete?text=${encodeURIComponent(
         query
       )}&size=5`;
-    const { features } = await jsonp(url);
+    const { features } = await fetchGeo(url);
     return features || [];
   }
 
@@ -96,8 +96,9 @@
       const res = await fetch('/data/composite_regions.geojson');
       if (!res.ok) throw new Error(`Failed to fetch geojson: ${res.status}`);
       cachedPolygons = await res.json();
+      const featureCount = cachedPolygons && cachedPolygons.features ? cachedPolygons.features.length : 0;
       console.log(
-        `[find.js] loaded composite_regions.geojson – ${cachedPolygons.features?.length || 0} features`
+        `[find.js] loaded composite_regions.geojson – ${featureCount} features`
       );
       return cachedPolygons;
     } catch (err) {
@@ -111,7 +112,7 @@
     let slug = null;
     geojson.features.forEach(f => {
       if (turf.booleanPointInPolygon(pt, f)) {
-        if (!slug) slug = f.properties?.slug;           // first match
+        if (!slug) slug = f.properties && f.properties.slug; // first match
         const g = f.properties.geo_tags;
         const n = f.properties.name_tags;
         Object.keys(g).forEach(type => {
@@ -143,7 +144,7 @@
 
   async function lookup(e) {
     if (e) e.preventDefault();
-    const input = document.getElementById('addr') || document.getElementById('addr-mobile');
+    const input = document.getElementById('searchQuery') || document.getElementById('searchQueryMobile');
     const value = input && input.value.trim();
     if (!value) return;
 
@@ -178,7 +179,7 @@
     const form = document.getElementById('find-form');
     if (form) form.addEventListener('submit', lookup);
     // Allow pressing Enter in the input
-    const input = document.getElementById('addr');
+    const input = document.getElementById('searchQuery');
     if (input) input.addEventListener('keydown', e => {
       if (e.key === 'Enter') lookup(e);
       if (e.key === 'ArrowDown') {
@@ -245,7 +246,7 @@
 
     // ── Mobile search wiring ───────────────────────────────────────────────
     const mForm = document.getElementById('find-form-mobile');
-    const mInput = document.getElementById('addr-mobile');
+    const mInput = document.getElementById('searchQueryMobile');
     const mSugg  = document.getElementById('suggestions-mobile');
 
     const showSuggestionsMobile = debounce(async q => {

@@ -223,12 +223,6 @@
       });
       function zoomToFeature(e){
         if(!e.features || !e.features.length) return;
-        const clickedLayer = e.features[0].layer.id;
-
-        // Thin all boundary layers, then thicken the clicked one
-        Object.keys(GEO_CFG).forEach(l =>
-          map.setPaintProperty(l, 'line-width', l === clickedLayer ? 4 : 3)
-        );
 
         // Zoom to bounds of the clicked geometry
         const geom = e.features[0].geometry;
@@ -241,7 +235,6 @@
         map.setLayoutProperty("incidents","visibility","visible");
       }
       Object.keys(GEO_CFG).forEach(id => map.on("click", id, zoomToFeature));
-
 
       const initial = localStorage.getItem('severityLevel') || 'total';
 
