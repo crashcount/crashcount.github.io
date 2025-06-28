@@ -53,6 +53,15 @@
     if(!mapEl) return;
     const geoType = mapEl.dataset.geoType || null;
     const geoId   = mapEl.dataset.geoId || null;
+    const initCenter = mapEl.dataset.mapCenter
+        ? mapEl.dataset.mapCenter.split(',').map(Number)
+        : [-73.94, 40.70];
+    const initZoom = mapEl.dataset.mapZoom
+        ? parseFloat(mapEl.dataset.mapZoom)
+        : 9;
+    const initBbox = mapEl.dataset.mapBbox
+        ? mapEl.dataset.mapBbox.split(',').map(Number)
+        : null;
 
     // Disable anonymous usage telemetry to avoid blocked POST requests to events.mapbox.com
     if (typeof window.mapboxgl.setTelemetryEnabled === 'function') {
@@ -62,8 +71,8 @@
     const map = new window.mapboxgl.Map({
       container: 'crash-map',
       style: 'mapbox://styles/crashcount/cmc834ov801cr01rxfmrg0rhv?fresh=true',
-      center: [-73.94,40.70],
-      zoom: 9
+      center: initCenter,
+      zoom: initZoom
     });
     console.log('[crash‑map] map object created', map);
 
@@ -243,17 +252,29 @@
         map.setFilter(geoType, filter);
 
         map.once('idle', () => {
-          const feats = map.queryRenderedFeatures({
-            layers: [geoType],
+          // Retrieve *all* matching features from the vector source so we
+          // capture geometry that may start outside the initial viewport.
+          const feats = map.querySourceFeatures(geoType, {
+            sourceLayer: geoType,
             filter
           });
+
           if (feats.length) {
             applySeverity(initial);
-            // fit map to district bounds
+
+            // Build a FeatureCollection and take a bbox around every part
+            // of the geometry, not just the first feature.
             if (typeof turf !== 'undefined') {
-              const b = turf.bbox(feats[0]);
+              const collection = { type: 'FeatureCollection', features: feats };
+              const b = turf.bbox(collection);
               map.fitBounds([[b[0], b[1]], [b[2], b[3]]], { padding: 20 });
             }
+          } else if (initBbox) {
+            map.fitBounds(
+              [[initBbox[0], initBbox[1]], [initBbox[2], initBbox[3]]],
+              { padding: 20 }
+            );
+            applySeverity(initial);
           }
         });
       } else {
