@@ -176,8 +176,11 @@
     }
   }
 
-  // Wire up on DOM ready
-  document.addEventListener('DOMContentLoaded', () => {
+  let _findInited = false;
+  function initFind() {
+    if (_findInited) return;      // guard against double‑runs
+    _findInited = true;
+    /*  ✂— begin existing content that was inside DOMContentLoaded —✂ */
     const form = document.getElementById('find-form');
     if (form) form.addEventListener('submit', lookup);
     // Allow pressing Enter in the input
@@ -324,5 +327,13 @@
         }
       });
     }
-  });
+    /*  ✂— end copied content —✂ */
+  }
+
+  // Run once when the DOM is ready (covers normal navigations)
+  if (document.readyState !== 'loading') initFind();
+  document.addEventListener('DOMContentLoaded', initFind);
+
+  // Also run after BFCache restores (Safari/WebKit quirk)
+  window.addEventListener('pageshow', initFind, { once: true });
 })();

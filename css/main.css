@@ -316,7 +316,7 @@ details[open] .arrow-toggle {
 
 /* ── Find‑my‑neighborhood autocomplete ─────────────────────────── */
 .suggest-list { list-style: none; max-height: 14rem; overflow-y: auto; margin: 0; padding: 0; }
-.suggest-item { padding: .5rem .75rem; cursor: pointer; }
+.suggest-item { padding: .5rem .75rem; cursor: pointer; font-weight: 500;}
 .suggest-item:hover { background: #f3f3f3; }
 
 /* ── Autocomplete dropdown positioning fixes ──────────────── */
