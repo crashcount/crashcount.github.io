@@ -144,8 +144,10 @@
 
   async function lookup(e) {
     if (e) e.preventDefault();
-    const input = document.getElementById('searchQuery') || document.getElementById('searchQueryMobile');
-    const value = input && input.value.trim();
+    const desktopInput = document.getElementById('searchQuery');
+    const mobileInput = document.getElementById('searchQueryMobile');
+    // Choose the field the user actually typed into (the one with a non‑empty value)
+    const value = (mobileInput && mobileInput.value.trim()) || (desktopInput && desktopInput.value.trim());
     if (!value) return;
 
     const resultsEl = document.getElementById('results');
@@ -181,8 +183,10 @@
     // Allow pressing Enter in the input
     const input = document.getElementById('searchQuery');
     if (input) input.addEventListener('keydown', e => {
-      if (e.key === 'Enter') lookup(e);
-      if (e.key === 'ArrowDown') {
+      const isDown = e.key === 'ArrowDown' || e.key === 'Down' || e.keyCode === 40;
+      const isEnter = e.key === 'Enter' || e.keyCode === 13;
+      if (isEnter) lookup(e);
+      if (isDown) {
         const first = suggEl.querySelector('.suggest-item');
         if (first) {
           e.preventDefault();
@@ -193,6 +197,7 @@
 
     // Live type‑ahead -------------------------------------------------------
     const suggEl = document.getElementById('suggestions');
+    if (suggEl) suggEl.setAttribute('role', 'listbox');
     const showSuggestions = debounce(async q => {
       if (q.length < 2) {
         suggEl.innerHTML = '';
@@ -207,7 +212,7 @@
             f =>
               `<li data-label="${encodeURIComponent(
                 f.properties.label
-              )}" class="suggest-item" tabindex="-1">${f.properties.label}</li>`
+              )}" class="suggest-item" tabindex="0" role="option">${f.properties.label}</li>`
           )
           .join('');
       } catch {
@@ -215,24 +220,35 @@
       }
     }, 120);    // 120 ms debounce
 
+    function selectSuggestion(li, inputEl, listEl, mirrorEl) {
+      const value = decodeURIComponent(li.dataset.label);
+      inputEl.value = value;
+      if (mirrorEl) mirrorEl.value = value; // keep both inputs in sync
+      listEl.innerHTML = '';
+      lookup();
+    }
+
     if (input) {
       input.addEventListener('input', e => showSuggestions(e.target.value));
-      suggEl.addEventListener('click', e => {
+      const handleClick = e => {
         const li = e.target.closest('.suggest-item');
         if (!li) return;
-        input.value = decodeURIComponent(li.dataset.label);
-        suggEl.innerHTML = '';
-        lookup();          // run full lookup with chosen text
-      });
+        selectSuggestion(li, input, suggEl, mInput); // run full lookup with chosen text
+      };
+      suggEl.addEventListener('click', handleClick);
+      // touchend catches Safari mobile taps
+      suggEl.addEventListener('touchend', handleClick);
       // keyboard nav inside suggestions
       suggEl.addEventListener('keydown', e => {
         const item = e.target.closest('.suggest-item');
         if (!item) return;
-        if (e.key === 'ArrowDown') {
+        const isDown = e.key === 'ArrowDown' || e.key === 'Down' || e.keyCode === 40;
+        const isUp   = e.key === 'ArrowUp'   || e.key === 'Up'   || e.keyCode === 38;
+        if (isDown) {
           e.preventDefault();
           const nxt = item.nextElementSibling;
           if (nxt) nxt.focus();
-        } else if (e.key === 'ArrowUp') {
+        } else if (isUp) {
           e.preventDefault();
           const prv = item.previousElementSibling;
           if (prv) prv.focus();
@@ -248,6 +264,7 @@
     const mForm = document.getElementById('find-form-mobile');
     const mInput = document.getElementById('searchQueryMobile');
     const mSugg  = document.getElementById('suggestions-mobile');
+    if (mSugg) mSugg.setAttribute('role', 'listbox');
 
     const showSuggestionsMobile = debounce(async q => {
       if (q.length < 2) { mSugg.innerHTML = ''; return; }
@@ -257,15 +274,17 @@
         if (token !== lastSuggestToken) return;
         mSugg.innerHTML = feats.map(f =>
           `<li data-label="${encodeURIComponent(f.properties.label)}"
-               class="suggest-item" tabindex="-1">${f.properties.label}</li>`).join('');
+               class="suggest-item" tabindex="0" role="option">${f.properties.label}</li>`).join('');
       } catch { mSugg.innerHTML = ''; }
     }, 120);
 
     if (mForm) mForm.addEventListener('submit', lookup);
     if (mInput){
       mInput.addEventListener('keydown', e => {
-        if (e.key === 'Enter') lookup(e);
-        if (e.key === 'ArrowDown') {
+        const isDown = e.key === 'ArrowDown' || e.key === 'Down' || e.keyCode === 40;
+        const isEnter = e.key === 'Enter' || e.keyCode === 13;
+        if (isEnter) lookup(e);
+        if (isDown) {
           const first = mSugg.querySelector('.suggest-item');
           if (first) {
             e.preventDefault();
@@ -276,22 +295,25 @@
       mInput.addEventListener('input',  e => showSuggestionsMobile(e.target.value));
     }
     if (mSugg){
-      mSugg.addEventListener('click', e => {
+      const handleClickMobile = e => {
         const li = e.target.closest('.suggest-item');
         if (!li) return;
-        mInput.value = decodeURIComponent(li.dataset.label);
-        mSugg.innerHTML = '';
-        lookup();
-      });
+        selectSuggestion(li, mInput, mSugg, input);
+      };
+      mSugg.addEventListener('click', handleClickMobile);
+      // touchend for reliable taps on iOS
+      mSugg.addEventListener('touchend', handleClickMobile);
       // keyboard nav for mobile suggestions
       mSugg.addEventListener('keydown', e => {
         const item = e.target.closest('.suggest-item');
         if (!item) return;
-        if (e.key === 'ArrowDown') {
+        const isDown = e.key === 'ArrowDown' || e.key === 'Down' || e.keyCode === 40;
+        const isUp   = e.key === 'ArrowUp'   || e.key === 'Up'   || e.keyCode === 38;
+        if (isDown) {
           e.preventDefault();
           const nxt = item.nextElementSibling;
           if (nxt) nxt.focus();
-        } else if (e.key === 'ArrowUp') {
+        } else if (isUp) {
           e.preventDefault();
           const prv = item.previousElementSibling;
           if (prv) prv.focus();

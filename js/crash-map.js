@@ -5,6 +5,16 @@
     console.error('Missing Mapbox token');
     return;
   }
+  const HEAT_DATA = (() => {
+    const el = document.getElementById('heatmap-data');
+    if (!el) return null;
+    try { return JSON.parse(el.textContent); } catch { return null; }
+  })();
+  const POPUP_DATA = (() => {
+    const el = document.getElementById('heatmap-popup-data');
+    if (!el) return null;
+    try { return JSON.parse(el.textContent); } catch { return null; }
+  })();
   console.log('[crash‑map] script loaded; MAPBOX_TOKEN present:', !!MAPBOX_TOKEN);
 
   // ----------------------------------------------------------------------------
@@ -30,8 +40,6 @@
     else document.addEventListener('DOMContentLoaded', cb, { once: true });
   }
 
-  whenDomReady(() => whenMapboxReady(init));
-
   // From here down, the code stays the same, but
   // we delete the earlier `if (!mapboxgl)` guard
 
@@ -45,6 +53,9 @@
     senate:   {prop: 'DISTRICT'},
   };
 
+  // Wait for DOM and Mapbox GL JS only after the constants above are in scope
+  whenDomReady(() => whenMapboxReady(init));
+
   function init(){
     console.log('[crash‑map] init() starting');
     window.mapboxgl.accessToken = MAPBOX_TOKEN;
@@ -53,6 +64,7 @@
     if(!mapEl) return;
     const geoType = mapEl.dataset.geoType || null;
     const geoId   = mapEl.dataset.geoId || null;
+    const heatRegion = (geoType && GEO_CFG[geoType]) ? geoType : 'council';
     const initCenter = mapEl.dataset.mapCenter
         ? mapEl.dataset.mapCenter.split(',').map(Number)
         : [-73.94, 40.70];
@@ -115,6 +127,7 @@
         type: 'circle',
         source: 'incidents',
         'source-layer': 'incidents',
+        minzoom: 10,
         maxzoom: 11,
         filter: ['>=', ['to-number', ['get', 'severity']], 4],
         paint: {
@@ -221,6 +234,77 @@
           layout: { visibility: (visibleGeoType && layer !== visibleGeoType) ? 'none' : 'visible' }
         });
       });
+      if (HEAT_DATA) {
+        map.addLayer({
+          id: heatRegion + '-fill',
+          type: 'fill',
+          source: heatRegion,
+          'source-layer': heatRegion,
+          maxzoom: 10,
+          paint: { 'fill-opacity': 0.7, 'fill-color': '#cccccc' }
+        });
+        map.addLayer({
+          id: heatRegion + '-line',
+          type: 'line',
+          source: heatRegion,
+          'source-layer': heatRegion,
+          maxzoom: 10,
+          paint: { 'line-color': '#777', 'line-width': 1 }
+        });
+        (function applyHeatColors(){
+          const keys = Object.keys(HEAT_DATA);
+          const vals = keys.map(k => {
+            const yearly = HEAT_DATA[k] || {};
+            return Object.values(yearly).reduce((sum,v)=>sum +
+              (v.moderate_injuries||0)+(v.serious_injuries||0)+(v.total_deaths||0),0);
+          });
+          if(vals.every(v=>v===0)) return;
+          const sorted = vals.slice().sort((a,b)=>a-b);
+          const q = p => sorted[Math.floor(p*sorted.length)];
+          const [q1,q2,q3]=[q(0.25),q(0.5),q(0.75)];
+          const expr=['match',['downcase',['to-string',['get',GEO_CFG[heatRegion].prop]]]];
+          keys.forEach((k,i)=>{
+            const v=vals[i];
+            let col='#cccccc';
+            if(v>0){
+              if(v>=q3)col='#cc0000';
+              else if(v>=q2)col='#ff1a1a';
+              else if(v>=q1)col='#ff6666';
+              else col='#ffb3b3';
+            }
+            expr.push(k.toLowerCase(),col);
+          });
+          expr.push('#cccccc');
+          map.setPaintProperty(heatRegion+'-fill','fill-color',expr);
+        })();
+        map.on('click', heatRegion+'-fill', e => {
+          if(e.features && e.features[0]){
+            const id=String(e.features[0].properties[GEO_CFG[heatRegion].prop]).toLowerCase();
+            const root={borough:'borough',council:'council-district',community:'community-board',precinct:'police-precinct',nta:'neighborhood',assembly:'assembly-district',senate:'senate-district'}[heatRegion]||heatRegion;
+            window.location.href=`/${root}/${id}/`;
+          }
+        });
+        if(POPUP_DATA){
+          let popup=new window.mapboxgl.Popup({closeButton:false,closeOnClick:false});
+          map.on('mousemove', heatRegion+'-fill', e => {
+            map.getCanvas().style.cursor='pointer';
+            if(!e.features.length) return;
+            const id=String(e.features[0].properties[GEO_CFG[heatRegion].prop]).toLowerCase();
+            const entry=POPUP_DATA[id]||{};
+            const repLine=entry.rep?`<span style="font-size:11px;color:#333;">${entry.rep}</span><br>`:'';
+            popup.setHTML(`
+              <div style="font-size:12px;line-height:1.35">
+                <strong>${(entry.name||id)}</strong><br>${repLine}
+                Crashes:&nbsp;${(entry.crashes||0).toLocaleString()}<br>
+                Injuries:&nbsp;${(entry.injuries||0).toLocaleString()}<br>
+                Moderate:&nbsp;${(entry.moderate||0).toLocaleString()}<br>
+                Serious:&nbsp;${(entry.serious||0).toLocaleString()}<br>
+                Deaths:&nbsp;${(entry.deaths||0).toLocaleString()}
+              </div>`).setLngLat(e.lngLat).addTo(map);
+          });
+          map.on('mouseleave', heatRegion+'-fill', () => { map.getCanvas().style.cursor=''; popup.remove(); });
+        }
+      }
       function zoomToFeature(e){
         if(!e.features || !e.features.length) return;
 
