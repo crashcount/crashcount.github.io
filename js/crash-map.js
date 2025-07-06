@@ -279,22 +279,45 @@
         })();
         map.on('click', heatRegion+'-fill', e => {
           if(e.features && e.features[0]){
-            const id=String(e.features[0].properties[GEO_CFG[heatRegion].prop]).toLowerCase();
-            const root={borough:'borough',council:'council-district',community:'community-board',precinct:'police-precinct',nta:'neighborhood',assembly:'assembly-district',senate:'senate-district'}[heatRegion]||heatRegion;
-            window.location.href=`/${root}/${id}/`;
+            const raw = String(e.features[0].properties[GEO_CFG[heatRegion].prop]);
+            const slug = raw
+              .toLowerCase()
+              .trim()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/^-|-$/g, '');
+            const root = {
+              borough: 'borough',
+              council: 'council-district',
+              community: 'community-board',
+              precinct: 'police-precinct',
+              nta: 'neighborhood',
+              assembly: 'assembly-district',
+              senate: 'senate-district',
+            }[heatRegion] || heatRegion;
+            window.location.href = `/${root}/${slug}/`;
           }
         });
         if(POPUP_DATA){
           let popup=new window.mapboxgl.Popup({closeButton:false,closeOnClick:false});
           map.on('mousemove', heatRegion+'-fill', e => {
-            map.getCanvas().style.cursor='pointer';
-            if(!e.features.length) return;
-            const id=String(e.features[0].properties[GEO_CFG[heatRegion].prop]).toLowerCase();
-            const entry=POPUP_DATA[id]||{};
-            const repLine=entry.rep?`<span style="font-size:11px;color:#333;">${entry.rep}</span><br>`:'';
+            map.getCanvas().style.cursor = 'pointer';
+            if (!e.features.length) return;
+            const id = String(
+              e.features[0].properties[GEO_CFG[heatRegion].prop]
+            ).toLowerCase();
+            const entry = POPUP_DATA[id] || {};
+
+            // Strip any leading/trailing quotes that have crept into titles
+            const cleanName = (entry.name || id).replace(/^"+|"+$/g, '');
+            const cleanRep  = entry.rep ? entry.rep.replace(/^"+|"+$/g, '') : '';
+
+            const repLine = cleanRep
+              ? `<span style="font-size:11px;color:#333;">${cleanRep}</span><br>`
+              : '';
+
             popup.setHTML(`
               <div style="font-size:12px;line-height:1.35">
-                <strong>${(entry.name||id)}</strong><br>${repLine}
+                <strong>${cleanName}</strong><br>${repLine}
                 Crashes:&nbsp;${(entry.crashes||0).toLocaleString()}<br>
                 Injuries:&nbsp;${(entry.injuries||0).toLocaleString()}<br>
                 Moderate:&nbsp;${(entry.moderate||0).toLocaleString()}<br>
