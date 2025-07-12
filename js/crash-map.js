@@ -119,7 +119,10 @@
             5, '#ff1744'  // 5  → red
           ]
         },
-        layout: { visibility: 'visible' }
+        layout: {
+          visibility: 'visible',
+          'circle-sort-key': ['get', 'severity']   // draw higher‑severity crashes last
+        }
       });
 
       map.addLayer({
@@ -130,6 +133,9 @@
         minzoom: 10,
         maxzoom: 11,
         filter: ['>=', ['to-number', ['get', 'severity']], 4],
+        layout: {
+          'circle-sort-key': ['get', 'severity']
+        },
         paint: {
           'circle-radius': [
             'step',
@@ -384,6 +390,7 @@
 
       // Make sure incidents layer stays on top of boundaries
       map.moveLayer('incidents');
+      map.moveLayer('incidents-hi');
       document.addEventListener('severityChange', e => applySeverity(e.detail));
       console.log('[crash‑map] load handler complete');
     });
