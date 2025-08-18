@@ -1,8 +1,0 @@
-{
-  "@context": "https://schema.org",
-  "@type": "DataCatalog",
-  "name": "Crash Count NYC",
-  "description": "Traffic crash and injury totals across New York City, aggregated by district.",
-  "url": "https://crashcountnyc.com/",
-  "license": "https://crashcountnyc.com/license"
-}
