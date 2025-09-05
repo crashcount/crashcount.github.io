@@ -84,7 +84,8 @@
       container: 'crash-map',
       style: 'mapbox://styles/crashcount/cmc834ov801cr01rxfmrg0rhv?fresh=true',
       center: initCenter,
-      zoom: initZoom
+      zoom: initZoom,
+      cooperativeGestures: true
     });
     console.log('[crash‑map] map object created', map);
 
