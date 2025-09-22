@@ -80,6 +80,52 @@
       window.mapboxgl.setTelemetryEnabled(false);
     }
 
+    const selectorEl = document.querySelector('.year-selector');
+    let yearOptions = [];
+    if (selectorEl && selectorEl.dataset && selectorEl.dataset.options) {
+      try { yearOptions = JSON.parse(selectorEl.dataset.options); }
+      catch (err) { console.warn('[crash-map] failed to parse year selector options', err); }
+    }
+    const yearOptionMap = {};
+    yearOptions.forEach(opt => { if (opt && opt.value) yearOptionMap[opt.value] = opt; });
+    const storageKey = 'crashYearFilter';
+    const mapAsOf = mapEl.dataset.asOf || null;
+    const aggregateOption = yearOptionMap['__all'] || yearOptions[0] || { start: '2022-01-01', end: mapAsOf };
+
+    function rangeFor(key) {
+      const opt = yearOptionMap[key];
+      if (opt) {
+        return {
+          start: opt.start || aggregateOption.start || '2022-01-01',
+          end: opt.end || aggregateOption.end || mapAsOf || null,
+        };
+      }
+      return {
+        start: aggregateOption.start || '2022-01-01',
+        end: aggregateOption.end || mapAsOf || null,
+      };
+    }
+
+    let storedYearKey = null;
+    try {
+      storedYearKey = window.localStorage ? window.localStorage.getItem(storageKey) : null;
+    } catch (err) {
+      storedYearKey = null;
+    }
+    let currentYearKey = (storedYearKey && (storedYearKey in yearOptionMap || storedYearKey === '__all')) ? storedYearKey : '__all';
+    if (!yearOptionMap[currentYearKey] && currentYearKey !== '__all') currentYearKey = '__all';
+    let currentRange = rangeFor(currentYearKey);
+
+    let storedSeverity = null;
+    try {
+      storedSeverity = window.localStorage ? window.localStorage.getItem('severityLevel') : null;
+    } catch (err) {
+      storedSeverity = null;
+    }
+    let currentSeverity = storedSeverity || 'total';
+
+    let popup = null;
+
     const map = new window.mapboxgl.Map({
       container: 'crash-map',
       style: 'mapbox://styles/crashcount/cmc834ov801cr01rxfmrg0rhv?fresh=true',
@@ -197,16 +243,30 @@
         deaths: ['==', ['to-number', ['get', 'severity']], 5]
       };
 
-      const MIN_DATE   = '2022-01-01';
-      const dateFilter = ['>=', ['get', 'crash_date'], MIN_DATE];
+      function buildDateConditions(range) {
+        const conditions = [];
+        const start = (range && range.start) ? range.start : (aggregateOption.start || '2022-01-01');
+        const end = range && range.end ? range.end : null;
+        const safeStart = start || '2022-01-01';
+        conditions.push(['>=', ['get', 'crash_date'], safeStart]);
+        if (end) conditions.push(['<=', ['get', 'crash_date'], end]);
+        return conditions;
+      }
 
       function applySeverity(level){
-        const sev = severityFilters[level] || true;
-        const filt = (sev === true) ? dateFilter
-                                    : ['all', dateFilter, sev];
-        // apply to both point layers
+        currentSeverity = level || 'total';
+        const sev = severityFilters[currentSeverity] || true;
+        const dateConditions = buildDateConditions(currentRange);
+        let filter;
+        if (sev === true) {
+          filter = dateConditions.length === 1
+            ? dateConditions[0]
+            : ['all'].concat(dateConditions);
+        } else {
+          filter = ['all'].concat(dateConditions, [sev]);
+        }
         ['incidents', 'incidents-hi'].forEach(layerId => {
-          if (map.getLayer(layerId)) map.setFilter(layerId, filt);
+          if (map.getLayer(layerId)) map.setFilter(layerId, filter);
         });
       }
 
@@ -258,32 +318,73 @@
           maxzoom: 10,
           paint: { 'line-color': '#777', 'line-width': 1 }
         });
-        (function applyHeatColors(){
-          const keys = Object.keys(HEAT_DATA);
+        function applyHeatColors(){
+          const keys = Object.keys(HEAT_DATA || {});
+          if (!keys.length) return;
           const vals = keys.map(k => {
             const yearly = HEAT_DATA[k] || {};
-            return Object.values(yearly).reduce((sum,v)=>sum +
-              (v.moderate_injuries||0)+(v.serious_injuries||0)+(v.total_deaths||0),0);
-          });
-          if(vals.every(v=>v===0)) return;
-          const sorted = vals.slice().sort((a,b)=>a-b);
-          const q = p => sorted[Math.floor(p*sorted.length)];
-          const [q1,q2,q3]=[q(0.25),q(0.5),q(0.75)];
-          const expr=['match',['downcase',['to-string',['get',GEO_CFG[heatRegion].prop]]]];
-          keys.forEach((k,i)=>{
-            const v=vals[i];
-            let col='#cccccc';
-            if(v>0){
-              if(v>=q3)col='#cc0000';
-              else if(v>=q2)col='#ff1a1a';
-              else if(v>=q1)col='#ff6666';
-              else col='#ffb3b3';
+            if (currentYearKey && currentYearKey !== '__all') {
+              const slice = yearly[currentYearKey] || {};
+              return (slice.moderate_injuries || 0) + (slice.serious_injuries || 0) + (slice.total_deaths || 0);
             }
-            expr.push(k.toLowerCase(),col);
+            return Object.values(yearly).reduce((sum, v) => sum +
+              (v.moderate_injuries || 0) + (v.serious_injuries || 0) + (v.total_deaths || 0), 0);
+          });
+          if (vals.every(v => v === 0)) return;
+          const sorted = vals.slice().sort((a, b) => a - b);
+          const q = p => sorted[Math.floor(p * sorted.length)];
+          const [q1, q2, q3] = [q(0.25), q(0.5), q(0.75)];
+          const expr = ['match', ['downcase', ['to-string', ['get', GEO_CFG[heatRegion].prop]]]];
+          keys.forEach((k, i) => {
+            const v = vals[i];
+            let col = '#cccccc';
+            if (v > 0) {
+              if (v >= q3) col = '#cc0000';
+              else if (v >= q2) col = '#ff1a1a';
+              else if (v >= q1) col = '#ff6666';
+              else col = '#ffb3b3';
+            }
+            expr.push(k.toLowerCase(), col);
           });
           expr.push('#cccccc');
-          map.setPaintProperty(heatRegion+'-fill','fill-color',expr);
-        })();
+          map.setPaintProperty(heatRegion + '-fill', 'fill-color', expr);
+        }
+        applyHeatColors();
+
+        function statsForEntry(entry) {
+          if (!entry) return { crashes: 0, injuries: 0, moderate: 0, serious: 0, deaths: 0 };
+          if (currentYearKey && currentYearKey !== '__all') {
+            const yearlyMap = entry.yearly || {};
+            const slice = yearlyMap[currentYearKey] || {};
+            return {
+              crashes: slice.total_crashes || 0,
+              injuries: slice.total_injuries || 0,
+              moderate: slice.moderate_injuries || 0,
+              serious: slice.serious_injuries || 0,
+              deaths: slice.total_deaths || 0,
+            };
+          }
+          const aggregate = entry.aggregate || {};
+          if (aggregate && Object.keys(aggregate).length) {
+            return {
+              crashes: aggregate.total_crashes || 0,
+              injuries: aggregate.total_injuries || 0,
+              moderate: aggregate.moderate_injuries || 0,
+              serious: aggregate.serious_injuries || 0,
+              deaths: aggregate.total_deaths || 0,
+            };
+          }
+          const yearlyMap = entry.yearly || {};
+          return Object.keys(yearlyMap).reduce((acc, key) => {
+            const slice = yearlyMap[key] || {};
+            acc.crashes += slice.total_crashes || 0;
+            acc.injuries += slice.total_injuries || 0;
+            acc.moderate += slice.moderate_injuries || 0;
+            acc.serious += slice.serious_injuries || 0;
+            acc.deaths += slice.total_deaths || 0;
+            return acc;
+          }, { crashes: 0, injuries: 0, moderate: 0, serious: 0, deaths: 0 });
+        }
         map.on('click', heatRegion+'-fill', e => {
           if(e.features && e.features[0]){
             const raw = String(e.features[0].properties[GEO_CFG[heatRegion].prop]);
@@ -305,7 +406,7 @@
           }
         });
         if(POPUP_DATA){
-          let popup=new window.mapboxgl.Popup({closeButton:false,closeOnClick:false});
+          popup = new window.mapboxgl.Popup({closeButton:false,closeOnClick:false});
           map.on('mousemove', heatRegion+'-fill', e => {
             map.getCanvas().style.cursor = 'pointer';
             if (!e.features.length) return;
@@ -313,6 +414,7 @@
               e.features[0].properties[GEO_CFG[heatRegion].prop]
             ).toLowerCase();
             const entry = POPUP_DATA[id] || {};
+            const stats = statsForEntry(entry);
 
             // Strip any leading/trailing quotes that have crept into titles
             const cleanName = (entry.name || id).replace(/^"+|"+$/g, '');
@@ -325,11 +427,11 @@
             popup.setHTML(`
               <div style="font-size:12px;line-height:1.35">
                 <strong>${cleanName}</strong><br>${repLine}
-                Crashes:&nbsp;${(entry.crashes||0).toLocaleString()}<br>
-                Injuries:&nbsp;${(entry.injuries||0).toLocaleString()}<br>
-                Moderate:&nbsp;${(entry.moderate||0).toLocaleString()}<br>
-                Serious:&nbsp;${(entry.serious||0).toLocaleString()}<br>
-                Deaths:&nbsp;${(entry.deaths||0).toLocaleString()}
+                Crashes:&nbsp;${stats.crashes.toLocaleString()}<br>
+                Injuries:&nbsp;${stats.injuries.toLocaleString()}<br>
+                Moderate:&nbsp;${stats.moderate.toLocaleString()}<br>
+                Serious:&nbsp;${stats.serious.toLocaleString()}<br>
+                Deaths:&nbsp;${stats.deaths.toLocaleString()}
               </div>`).setLngLat(e.lngLat).addTo(map);
           });
           map.on('mouseleave', heatRegion+'-fill', () => { map.getCanvas().style.cursor=''; popup.remove(); });
@@ -350,7 +452,7 @@
       }
       Object.keys(GEO_CFG).forEach(id => map.on("click", id, zoomToFeature));
 
-      const initial = localStorage.getItem('severityLevel') || 'total';
+      const initial = currentSeverity;
 
       if (geoType && GEO_CFG[geoType]) {
         const prop = GEO_CFG[geoType].prop;
@@ -392,7 +494,27 @@
       // Make sure incidents layer stays on top of boundaries
       map.moveLayer('incidents');
       map.moveLayer('incidents-hi');
-      document.addEventListener('severityChange', e => applySeverity(e.detail));
+      document.addEventListener('severityChange', e => {
+        const level = e.detail || 'total';
+        currentSeverity = level;
+        applySeverity(level);
+      });
+      document.addEventListener('yearChange', e => {
+        const detail = e.detail || {};
+        const key = detail.value || '__all';
+        const range = {
+          start: detail.start || rangeFor(key).start,
+          end: detail.end || rangeFor(key).end,
+        };
+        currentYearKey = key;
+        currentRange = range;
+        try {
+          if (window.localStorage) window.localStorage.setItem(storageKey, key);
+        } catch (err) {}
+        applySeverity(currentSeverity);
+        applyHeatColors();
+        if (popup && typeof popup.remove === 'function') popup.remove();
+      });
       console.log('[crash‑map] load handler complete');
     });
     map.on('error', e => console.error('[crash‑map] mapbox error:', e.error || e));
