@@ -1,0 +1,103 @@
+name: crashcount.nyc bug report
+description: Report a bug on crashcount.nyc.
+title: "[crashcount.nyc bug]: "
+labels:
+  - bug
+  - ready-for-codex
+  - crashcount-site
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for flagging a problem on crashcount.nyc.
+
+        Please use simple language. Short answers are fine.
+
+        This creates a public GitHub issue. Do not include private information or anything you would not want posted publicly. If you need a private channel instead, email hello@crashcount.nyc.
+
+  - type: input
+    id: page-url
+    attributes:
+      label: What page were you on?
+      description: Paste the page URL if you have it. If not, tell us the page title or what section of the site you were using.
+      placeholder: https://crashcount.nyc/...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: What part of the site was involved?
+      options:
+        - Home page
+        - Map or search
+        - Article page
+        - District or neighborhood page
+        - Alerts or signup
+        - Crashcount app page
+        - Something else
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What went wrong?
+      placeholder: The map markers disappeared after I zoomed in.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+      placeholder: I expected the markers to stay visible and open when I tapped one.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Can you make it happen again?
+      description: If yes, list the steps. If not, tell us what you clicked right before the bug happened.
+      placeholder: |
+        1. Open the page
+        2. Zoom into the map
+        3. Click a marker
+        4. The page stops responding
+    validations:
+      required: true
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How often does this happen?
+      options:
+        - Every time
+        - Sometimes
+        - Just once so far
+    validations:
+      required: true
+
+  - type: input
+    id: browser-device
+    attributes:
+      label: What browser and device were you using?
+      placeholder: Safari on iPhone 15, Chrome on MacBook Pro, Firefox on Windows
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshot or screen recording notes
+      description: You can drag screenshots into this box if that is easier.
+      placeholder: I attached a screenshot showing the broken layout.
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I removed private or personal information before submitting this public report.
+          required: true
