@@ -1,0 +1,47 @@
+[
+  {
+    "name": "bug",
+    "color": "d73a4a",
+    "description": "Something is broken or behaving incorrectly."
+  },
+  {
+    "name": "beta",
+    "color": "1d76db",
+    "description": "Reported during beta testing."
+  },
+  {
+    "name": "ready-for-codex",
+    "color": "5319e7",
+    "description": "Structured report that is ready for Codex triage."
+  },
+  {
+    "name": "crashcount-app",
+    "color": "0e8a16",
+    "description": "Issue affects the Crashcount iPhone app."
+  },
+  {
+    "name": "crashcount-site",
+    "color": "0052cc",
+    "description": "Issue affects crashcount.nyc."
+  },
+  {
+    "name": "needs-info",
+    "color": "fbca04",
+    "description": "More detail is needed before the bug can be reproduced."
+  },
+  {
+    "name": "confirmed",
+    "color": "0e8a16",
+    "description": "The bug has been reproduced or otherwise confirmed."
+  },
+  {
+    "name": "fixed",
+    "color": "bfdadc",
+    "description": "A fix has landed or been shipped."
+  },
+  {
+    "name": "duplicate",
+    "color": "cfd3d7",
+    "description": "This report matches an existing issue."
+  }
+]
